@@ -1,13 +1,174 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+* {
+  margin: 0;
+}
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.ProductDescriptionPage {
+  width: 100vw;
+  height: 90vh;
+  border: 1px solid black;
+  display: inline-block;
+}
+
+h5 {
+  margin: 0.3%;
+}
+
+.minImgContainer {
+  width: 15%;
+  height: 95%;
+  border: 1px solid brown;
+  float: left;
+  margin: 2%;
+  flex-wrap: wrap;
+}
+
+.minImg {
+  max-height: 30%;
+  width: 95%;
+  border: 1px solid red;
+}
+
+.ProductDescriptionContainer {
+  width: 30%;
+  height: 95%;
+  border: 1px solid brown;
+  float: left;
+  margin: 2%;
+  text-align: left;
+}
+
+.maxImgContainer {
+  width: 30%;
+  height: 95%;
+  border: 1px solid brown;
+  float: left;
+  margin-top: 0px;
+  margin: 2%;
+}
+
+.listCard {
+  width: 28vw;
+  height: 60vh;
+  margin: 1vw;
+  min-width: 290px;
+  border: 1px solid black;
+  display: inline-block;
+}
+
+.productDescriptionImg {
+  height: 100%;
+  width: 100%;
+  border: 1px solid green;
+}
+
+.listImg {
+  height: 70%;
+  width: 90%;
+}
+
+.description {
+  height: 30%;
+  max-height: 40%;
+  border: 1px solid black;
+  overflow: auto;
+  text-align: left;
+}
+.attributesContainer {
+  margin-top: 0;
+  height: 70%;
+  background-color: burlywood;
+}
+
+.attributes {
+  height: 25%;
+  border: 1px solid blue;
+  padding: 0;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navButtons {
+  border: 1px solid black;
+  margin: 10px;
+}
+#wrapper {
+  border: 1px solid black;
+}
+
+.menu {
+  border: 1px solid black;
+  margin: 1rem;
+  padding: 2rem 2rem;
+  text-align: center;
+}
+
+.square {
+  width: 17.5%;
+  font-size: 1.6vw;
+  aspect-ratio: 1 / 1;
+  margin: 1%;
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid gray;
+}
+
+.menuItem {
+  width: 30vw;
+  display: inline-block;
+  border: 1px solid red;
+  padding: 1rem 1rem;
+  vertical-align: middle;
+}
+
+.halfView {
+  width: 45vw;
+  border: 1px solid black;
+  margin: 1vw;
+  float: left;
+  height: 60vh;
+  flex-wrap: wrap;
+}
+
+.cartImg {
+  width: 40%;
+}
+
+.half {
+  height: 98%;
+  width: 48%;
+  margin: 0.5%;
+  float: left;
+  border: 1px solid black;
+  flex-wrap: wrap;
+}
+.attributes.forCart {
+  height: 29%;
+}
+
+#minicart {
+  height: 50vh;
+  position: absolute;
+  background-color: gray !important;
+  z-index: 5;
+  overflow: scroll;
+  width: 30vw;
+  left: 65vw;
 }

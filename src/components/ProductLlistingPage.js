@@ -72,14 +72,17 @@ export default class ProductLlistingPage extends Component {
         key={this.props.category}
       >
         <section id="wrapper">
-          {this.state.fullSpecs.map((specs) => (
+          {this.state.fullSpecs.map((specs, key) => (
             <Routes key={specs.id}>
               <Route
-                key={"ProductDescriptionPage"}
+                key={"ProductListingPage"}
                 path={"/"}
                 element={
                   <ProductCard
-                    specs={this.state.fullSpecs}
+                    setTotalPrice={this.props.setTotalPrice}
+                    setCartItemNumber={this.props.setCartItemNumber}
+                    attributeLength={specs.attributes.length}
+                    specs={specs}
                     name={specs.name}
                     id={specs.id}
                     onClick={this.handlePage}
@@ -108,6 +111,10 @@ export default class ProductLlistingPage extends Component {
                 path={specs.id}
                 element={
                   <ProductDescriptionPage
+                    setTotalPrice={this.props.setTotalPrice}
+                    setCartItemNumber={this.props.setCartItemNumber}
+                    id={specs.id}
+                    hideMiniCart={this.props.hideMiniCart}
                     specs={specs}
                     price={
                       specs.prices.filter(

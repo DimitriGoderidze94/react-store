@@ -7,28 +7,51 @@ export default class ProductDescriptionPage extends Component {
     this.state = {
       choosenImg: 0,
 
-      chosenAttributes: [],
+      chosenAttributes: JSON.parse(
+        sessionStorage.getItem(this.props.id) || "[]"
+      ),
     };
   }
   setCartData() {
-    var index = -1;
+    let index = -1;
     const cart = JSON.parse(sessionStorage.getItem("cart") || "[]");
 
-    for (var i = 0; i < cart.length; i++) {
+    for (let i = 0; i < cart.length; i++) {
       if (cart[i][1].id === this.props.specs.id) {
         index = i;
       }
     }
-    if (index > -1) {
-      alert(this.props.specs.name + "is already in cart");
+
+    if (
+      this.props.specs.attributes.length >
+      JSON.parse(sessionStorage.getItem(this.props.id) || "[]").filter(
+        function (e) {
+          return e != null;
+        }
+      ).length
+    ) {
+      alert("please choose all attributes");
+    } else if (index > -1) {
+      let temp = JSON.parse(sessionStorage.getItem("cart") || "[]");
+
+      temp.splice(index, 1, [
+        { quantity: 1 },
+        this.props.specs,
+        this.state.chosenAttributes,
+      ]);
+      sessionStorage.setItem("cart", JSON.stringify(temp));
     } else {
       cart.push([
         { quantity: 1 },
         this.props.specs,
         this.state.chosenAttributes,
       ]);
+      sessionStorage.setItem("cart", JSON.stringify(cart));
     }
-    sessionStorage.setItem("cart", JSON.stringify(cart));
+
+    this.props.hideMiniCart();
+    this.props.setCartItemNumber();
+    this.props.setTotalPrice();
   }
 
   render() {
@@ -69,11 +92,18 @@ export default class ProductDescriptionPage extends Component {
                 {attribute.items.map((item, key1) => (
                   <button
                     onClick={() => {
-                      var temp = this.state.chosenAttributes;
+                      let temp = JSON.parse(
+                        sessionStorage.getItem(this.props.id) || "[]"
+                      );
                       temp[key] = item.id;
                       this.setState({
                         chosenAttributes: temp,
                       });
+
+                      sessionStorage.setItem(
+                        this.props.id,
+                        JSON.stringify(temp)
+                      );
                     }}
                     id={item.id}
                     className="square"
@@ -81,8 +111,10 @@ export default class ProductDescriptionPage extends Component {
                       backgroundColor: item.displayValue,
                       color: item.displayValue,
                       borderColor:
-                        this.state.chosenAttributes[key] == item.id
-                          ? "darkblue"
+                        JSON.parse(
+                          sessionStorage.getItem(this.props.id) || "[]"
+                        )[key] === item.id
+                          ? "#1D1F22"
                           : "lightblue",
                     }}
                     key={item.displayValue}
@@ -96,7 +128,9 @@ export default class ProductDescriptionPage extends Component {
             <h4>PRICE:</h4>
             <span>{this.props.currencysymbol + this.props.price}</span>
             <br />
-            <button onClick={() => this.setCartData()}>ADD TO CART</button>
+            <button className="addToCart" onClick={() => this.setCartData()}>
+              ADD TO CART
+            </button>
           </div>
           <div
             className="description"

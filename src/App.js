@@ -15,18 +15,30 @@ export default class App extends Component {
     super(props);
     this.state = {
       category: "clothes",
-      currencylabel: "USD",
-      currencysymbol: "$",
+      currencylabel:
+        JSON.parse(sessionStorage.getItem("choosenCurrencyLabel")) || "USD",
+      currencysymbol:
+        JSON.parse(sessionStorage.getItem("choosenCurrencySymbol")) || "$",
       AllCategories: [],
       count: 0,
       currencyList: [],
       showCart: false,
+      cartItemNumber: JSON.parse(sessionStorage.getItem("cart"))
+        ? JSON.parse(sessionStorage.getItem("cart")).length
+        : "",
+      totalPrice: JSON.parse(sessionStorage.getItem("totalPrice")) || 0,
     };
     this.handleCurrency = this.handleCurrency.bind(this);
     this.handleCategory = this.handleCategory.bind(this);
+    this.hideMiniCart = this.hideMiniCart.bind(this);
+    this.setCartItemNumber = this.setCartItemNumber.bind(this);
+    this.setTotalPrice = this.setTotalPrice.bind(this);
   }
 
   componentDidMount() {
+    const cart = JSON.parse(sessionStorage.getItem("cart") || "[]");
+    sessionStorage.setItem("cart", JSON.stringify(cart));
+
     //categori list
     const categoryInfo = new ApolloClient({
       cache: new InMemoryCache(),
@@ -70,16 +82,32 @@ export default class App extends Component {
           currencyList: result.data.currencies,
         });
       });
+    this.setCartItemNumber();
   }
 
   handleCurrency(e) {
-    this.setState({
-      currencylabel: e.target.selectedOptions[0].getAttribute("currencylabel"),
-      currencysymbol: e.target.selectedOptions[0].getAttribute("symbol"),
-    });
+    this.setState(
+      {
+        currencylabel:
+          e.target.selectedOptions[0].getAttribute("currencylabel"),
+        currencysymbol: e.target.selectedOptions[0].getAttribute("symbol"),
+      },
+      () => {
+        this.setTotalPrice();
+      }
+    );
+    sessionStorage.setItem(
+      "choosenCurrencySymbol",
+      JSON.stringify(e.target.selectedOptions[0].getAttribute("symbol"))
+    );
+    sessionStorage.setItem(
+      "choosenCurrencyLabel",
+      JSON.stringify(e.target.selectedOptions[0].getAttribute("currencylabel"))
+    );
   }
+
   handleCategory(e) {
-    this.setState({ category: e.target.innerText }, () => {});
+    this.setState({ category: e.target.innerText });
   }
 
   handleCart() {
@@ -87,12 +115,43 @@ export default class App extends Component {
       this.setState({
         showCart: false,
       });
+      document.getElementById("page").style.background = "#FFFFFF";
     } else {
       this.setState({
         showCart: true,
       });
+      document.getElementById("page").style.background =
+        "rgba(57, 55, 72, 0.22)";
     }
-    console.log(this.state.showCart);
+    this.setTotalPrice();
+  }
+  hideMiniCart() {
+    this.setState({
+      showCart: false,
+    });
+    document.getElementById("page").style.background = "#FFFFFF";
+  }
+
+  setCartItemNumber() {
+    this.setState({
+      cartItemNumber: JSON.parse(sessionStorage.getItem("cart")).length || "",
+    });
+  }
+
+  setTotalPrice() {
+    let cart = JSON.parse(sessionStorage.getItem("cart"));
+    let total = 0;
+    for (let i = 0; i < cart.length; i++) {
+      let subTotal =
+        cart[i][1].prices.filter(
+          (price) => price.currency.label === this.state.currencylabel
+        )[0].amount * JSON.parse(sessionStorage.getItem("cart"))[i][0].quantity;
+      total = total + subTotal;
+    }
+    this.setState({
+      totalPrice: Math.round((total * 100) / 100),
+    });
+    sessionStorage.setItem("totalPrice", Math.round((total * 100) / 100));
   }
 
   render() {
@@ -100,85 +159,137 @@ export default class App extends Component {
       <div className="App">
         <div className="menu">
           <Nav
+            currencylabel={this.state.currencylabel}
+            hideMiniCart={this.hideMiniCart}
             AllCategories={this.state.AllCategories}
             category={this.state.category}
             handleCategory={this.handleCategory}
           />
-
+          <div id="logo" className="menuItem"></div>
           <Currency
+            setTotalPrice={this.setTotalPrice}
+            hideMiniCart={this.hideMiniCart}
             currencyList={this.state.currencyList}
             currency={this.state.currencylabel}
             handleCurrency={this.handleCurrency}
+            currencySymbol={this.state.currencysymbol}
           />
-          <button onClick={() => sessionStorage.setItem("cart", "[]")}>
-            clearCart
+
+          <button
+            className="menuItem"
+            id="showCart"
+            onClick={() => this.handleCart()}
+          >
+            <div id="cartItemNumber">{this.state.cartItemNumber}</div>
           </button>
-          <Link to={"cart"}>cart</Link>
-          <button onClick={() => this.handleCart()}>show cart</button>
         </div>
         {this.state.showCart && (
           <div id="minicart">
-            <Cart
-              currencysymbol={this.state.currencysymbol}
-              currency={this.state.currencylabel}
-              count={this.state.count}
-              onClick={this.increment}
-            />
-          </div>
-        )}
-
-        <Routes>
-          {this.state.AllCategories.map((category, key) => (
-            <Route
-              key={category}
-              path={category + "/*"}
-              element={
-                <div>
-                  <h2>{category}</h2>
-                  <ProductLlistingPage
-                    currency={this.state.currencylabel}
-                    key={category}
-                    category={category}
-                    currencysymbol={this.state.currencysymbol}
-                  />
-                </div>
-              }
-            />
-          ))}
-          <Route
-            key={"all"}
-            path={"/*"}
-            element={
-              <ProductLlistingPage
-                productSpecs={this.state.productSpecs}
-                currency={this.state.currencylabel}
-                key={this.state.category}
-                category={"all"}
-                currencysymbol={this.state.currencysymbol}
-              />
-            }
-          />
-
-          <Route
-            key={"ProductDescriptionPage"}
-            path={this.state.category + "/ProductDescriptionPage"}
-            element={
-              <ProductDescriptionPage handleCategory={this.handleCategory} />
-            }
-          />
-          <Route
-            key={"cart"}
-            path={"cart"}
-            element={
+            <div>
+              <b>MY BAG: </b>
+              {JSON.parse(sessionStorage.getItem("cart"))
+                ? JSON.parse(sessionStorage.getItem("cart")).length
+                : 0}
+              {" ITEMS"}
+            </div>
+            <div className="minicartTop">
               <Cart
+                totalPrice={this.state.totalPrice}
+                setTotalPrice={this.setTotalPrice}
+                setCartItemNumber={this.setCartItemNumber}
                 currencysymbol={this.state.currencysymbol}
                 currency={this.state.currencylabel}
                 count={this.state.count}
                 onClick={this.increment}
               />
-            }
-          />
-        </Routes>
+            </div>
+            <div>
+              <div id="totalPriceContainer">
+                <b id="total">TOTAL: </b>
+                <b id="totalPrice">
+                  {this.state.currencysymbol + this.state.totalPrice}
+                </b>
+              </div>
+              <div id="fullWidth">
+                <Link id="viewBag" to={"cart"}>
+                  View&nbsp;BaG
+                </Link>
+                <a
+                  href=""
+                  id="checkOut"
+                  onClick={() => alert("please try later")}
+                >
+                  checkOut
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+        <div onMouseDown={() => this.hideMiniCart()} id="page">
+          <Routes>
+            {this.state.AllCategories.map((category, key) => (
+              <Route
+                key={category}
+                path={category + "/*"}
+                element={
+                  <div>
+                    <h2>{category.toUpperCase()}</h2>
+                    <ProductLlistingPage
+                      setTotalPrice={this.setTotalPrice}
+                      setCartItemNumber={this.setCartItemNumber}
+                      hideMiniCart={this.hideMiniCart}
+                      currency={this.state.currencylabel}
+                      key={category}
+                      category={category}
+                      currencysymbol={this.state.currencysymbol}
+                      ha
+                    />
+                  </div>
+                }
+              />
+            ))}
+            <Route
+              key={"all"}
+              path={"/*"}
+              element={
+                <ProductLlistingPage
+                  setTotalPrice={this.setTotalPrice}
+                  setCartItemNumber={this.setCartItemNumber}
+                  hideMiniCart={this.hideMiniCart}
+                  productSpecs={this.state.productSpecs}
+                  currency={this.state.currencylabel}
+                  key={this.state.category}
+                  category={"all"}
+                  currencysymbol={this.state.currencysymbol}
+                />
+              }
+            />
+
+            <Route
+              key={"ProductDescriptionPage"}
+              path={this.state.category + "/ProductDescriptionPage"}
+              element={
+                <ProductDescriptionPage handleCategory={this.handleCategory} />
+              }
+            />
+            <Route
+              key={"cart"}
+              path={"cart"}
+              element={
+                <Cart
+                  totalPrice={this.state.totalPrice}
+                  setTotalPrice={this.setTotalPrice}
+                  setCartItemNumber={this.setCartItemNumber}
+                  currencysymbol={this.state.currencysymbol}
+                  currency={this.state.currencylabel}
+                  count={this.state.count}
+                  onClick={this.increment}
+                  hideMiniCart={this.hideMiniCart}
+                />
+              }
+            />
+          </Routes>
+        </div>
       </div>
     );
   }

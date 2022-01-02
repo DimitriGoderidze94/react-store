@@ -9,6 +9,18 @@ body {
 
 * {
   margin: 0;
+  font-family: "Raleway", sans-serif;
+  color: #1d1f22;
+
+  text-decoration: none;
+  font-style: normal;
+  font-weight: bold;
+}
+
+h2,
+h3 {
+  text-align: left;
+  margin-left: 5%;
 }
 
 code {
@@ -16,11 +28,23 @@ code {
     monospace;
 }
 
+h6 {
+  font-weight: 300;
+  font-size: 18px;
+  margin-left: 4.5%;
+}
+
+.listProductPrice {
+  font-weight: 800;
+  font-size: 18px;
+  margin-left: 4.5%;
+}
+
 .ProductDescriptionPage {
-  width: 100vw;
-  height: 90vh;
-  border: 1px solid black;
+  width: 100%;
+
   display: inline-block;
+  aspect-ratio: 3 / 2;
 }
 
 h5 {
@@ -30,7 +54,7 @@ h5 {
 .minImgContainer {
   width: 15%;
   height: 95%;
-  border: 1px solid brown;
+
   float: left;
   margin: 2%;
   flex-wrap: wrap;
@@ -38,14 +62,14 @@ h5 {
 
 .minImg {
   max-height: 30%;
-  width: 95%;
-  border: 1px solid red;
+  aspect-ratio: 1/1;
+  max-width: 95%;
 }
 
 .ProductDescriptionContainer {
   width: 30%;
   height: 95%;
-  border: 1px solid brown;
+
   float: left;
   margin: 2%;
   text-align: left;
@@ -54,49 +78,54 @@ h5 {
 .maxImgContainer {
   width: 30%;
   height: 95%;
-  border: 1px solid brown;
+
   float: left;
   margin-top: 0px;
   margin: 2%;
 }
 
 .listCard {
-  width: 28vw;
-  height: 60vh;
-  margin: 1vw;
+  width: 28%;
+  margin: 1%;
   min-width: 290px;
-  border: 1px solid black;
+
   display: inline-block;
+  aspect-ratio: 2 / 3;
+  position: relative;
+  text-align: left;
+  box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
 }
 
 .productDescriptionImg {
   height: 100%;
   width: 100%;
-  border: 1px solid green;
 }
 
 .listImg {
   height: 70%;
   width: 90%;
+
+  margin: 4.5% 0 0 4.5%;
+  filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
 }
 
-.description {
+.description * {
   height: 30%;
   max-height: 40%;
-  border: 1px solid black;
+
   overflow: auto;
   text-align: left;
+  font-family: "Roboto", sans-serif;
 }
 .attributesContainer {
   margin-top: 0;
   height: 70%;
-  background-color: burlywood;
 }
 
 .attributes {
-  height: 25%;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   padding: 0;
+  height: 25%;
 }
 
 ul {
@@ -106,69 +135,252 @@ ul {
 }
 
 .navButtons {
-  border: 1px solid black;
-  margin: 10px;
-}
-#wrapper {
-  border: 1px solid black;
+  padding: 0% 2% 3% 2%;
+  margin: 1%;
+  text-decoration: none;
+  vertical-align: middle;
+  border-bottom: 4px solid white;
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
 }
 
 .menu {
-  border: 1px solid black;
-  margin: 1rem;
-  padding: 2rem 2rem;
-  text-align: center;
+  /* border: 1px solid black; */
+  margin: 2%;
+  margin-left: 5%;
+  vertical-align: middle;
+  text-align: left;
 }
 
-.square {
-  width: 17.5%;
+.square,
+.square1 {
+  width: 15.5%;
   font-size: 1.6vw;
   aspect-ratio: 1 / 1;
   margin: 1%;
   overflow: hidden;
   padding: 0;
-  border: 1px solid gray;
+  border: 2px solid gray;
+}
+.square1 {
+  width: 44%;
+  aspect-ratio: 1/1;
+  border: 1px solid #1d1f22;
 }
 
 .menuItem {
-  width: 30vw;
+  height: 7vh;
   display: inline-block;
-  border: 1px solid red;
-  padding: 1rem 1rem;
+  /* border: 1px solid red; */
+  margin: 0.5%;
   vertical-align: middle;
 }
 
+#nav {
+  width: 44%;
+}
+#selectCurrency {
+  margin-left: 30%;
+  height: 5%;
+}
+
+.currencyChanger {
+  width: 40px;
+  border: none;
+  word-spacing: 8px;
+}
+.cartItemContainer {
+  height: 63vh;
+  width: 94%;
+  margin-left: 2%;
+  /* border: 1px solid black; */
+}
+
 .halfView {
-  width: 45vw;
-  border: 1px solid black;
-  margin: 1vw;
+  position: relative;
+  width: 45%;
+  /* border: 1px solid black; */
+  margin: 1%;
   float: left;
-  height: 60vh;
+  height: 95%;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .cartImg {
-  width: 40%;
+  width: 98%;
+  /* border: 1px solid black; */
+  height: 85%;
+}
+
+.quantity {
+  padding-right: 18%;
+  font-size: 150%;
 }
 
 .half {
-  height: 98%;
-  width: 48%;
-  margin: 0.5%;
+  position: relative;
+  padding-top: 10%;
+  text-align: end;
+  height: 68%;
+  width: 43%;
+  margin-left: 3%;
+  margin-top: 3%;
   float: left;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   flex-wrap: wrap;
 }
+
+.line {
+  height: 1px;
+  will-change: 100%;
+  background: #a08f8f;
+}
+
+.removeFromCart {
+  text-align: center;
+}
+
 .attributes.forCart {
-  height: 29%;
+  height: 28%;
+}
+
+#cartPage {
+  text-align: left;
 }
 
 #minicart {
-  height: 50vh;
+  font-size: 60%;
   position: absolute;
-  background-color: gray !important;
+
   z-index: 5;
-  overflow: scroll;
-  width: 30vw;
-  left: 65vw;
+
+  width: 20%;
+  height: 60vh;
+  min-width: 150px;
+  left: calc(80% - 100px);
+  background-color: white;
+  box-shadow: 0px 0px 2px gray;
+}
+#fullWidth {
+  width: 100%;
+}
+
+#viewBag,
+#checkOut {
+  border: 1px solid #1d1f22;
+  display: inline-block;
+  width: 40%;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 120%;
+  margin-right: 2%;
+}
+
+#checkOut {
+  background: #5ece7b;
+  border: 1px solid #5ece7b;
+  color: white;
+}
+.minicartTop {
+  height: 45vh;
+  background-color: white;
+
+  overflow-y: scroll;
+}
+
+#minicart .cartItemContainer {
+  height: 22vh;
+}
+#minicart .square {
+  font-size: 1.6%;
+}
+#minicart .square1 {
+  width: 50%;
+}
+
+#minicart .quantity {
+  padding-right: 5%;
+}
+
+.listingPageCart {
+  width: 30%;
+  aspect-ratio: 1/1;
+
+  top: 64%;
+  left: 65%;
+  background: url("./img/greenCart.png");
+  border: none;
+  white-space: nowrap;
+  overflow: hidden;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: 60% 60%;
+  background-position: center;
+  image-rendering: optimizeQuality;
+  bottom: 0;
+}
+
+#showCart {
+  width: 40px;
+  height: 40px;
+  background: url("./img/blackCart.png");
+  border: none;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: 60% 60%;
+  background-position: center;
+  image-rendering: pixelated;
+}
+#showCart div {
+  font-size: 15px;
+  position: relative;
+  top: 0px;
+  right: 0px;
+  display: inline-block;
+  border: none;
+  border-radius: 50%;
+  background-color: black;
+  color: white;
+  position: absolute;
+  width: 15px;
+}
+
+#logo {
+  width: 40px;
+  height: 40px;
+  background: url("./img/logo.png");
+  border: none;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: 60% 60%;
+  background-position: center;
+  image-rendering: pixelated;
+}
+
+.addToCart {
+  width: 70%;
+  background-color: #5ece7b;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+}
+
+#totalPriceContainer {
+  margin-top: 3vh;
+  text-align: left;
+  padding: 0 10% 0 10%;
+  margin-bottom: 5%;
+}
+#total {
+  margin-left: 5%;
+  margin-right: 45%;
+  margin-bottom: 5%;
 }

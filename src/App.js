@@ -1,4 +1,3 @@
-import "./App.css";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
 import Nav from "./components/Nav";
@@ -14,13 +13,12 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      category: "clothes",
+      category: "all",
       currencylabel:
         JSON.parse(sessionStorage.getItem("choosenCurrencyLabel")) || "USD",
       currencysymbol:
         JSON.parse(sessionStorage.getItem("choosenCurrencySymbol")) || "$",
       AllCategories: [],
-      count: 0,
       currencyList: [],
       showCart: false,
       cartItemNumber: JSON.parse(sessionStorage.getItem("cart"))
@@ -199,7 +197,6 @@ export default class App extends Component {
                 setCartItemNumber={this.setCartItemNumber}
                 currencysymbol={this.state.currencysymbol}
                 currency={this.state.currencylabel}
-                count={this.state.count}
                 onClick={this.increment}
               />
             </div>
@@ -212,14 +209,14 @@ export default class App extends Component {
               </div>
               <div id="fullWidth">
                 <Link id="viewBag" to={"cart"}>
-                  View&nbsp;BaG
+                  VIEW&nbsp;BAG
                 </Link>
                 <a
-                  href=""
+                  href="."
                   id="checkOut"
                   onClick={() => alert("please try later")}
                 >
-                  checkOut
+                  CHECKOUT
                 </a>
               </div>
             </div>
@@ -227,7 +224,7 @@ export default class App extends Component {
         )}
         <div onMouseDown={() => this.hideMiniCart()} id="page">
           <Routes>
-            {this.state.AllCategories.map((category, key) => (
+            {this.state.AllCategories.map((category) => (
               <Route
                 key={category}
                 path={category + "/*"}
@@ -266,13 +263,6 @@ export default class App extends Component {
             />
 
             <Route
-              key={"ProductDescriptionPage"}
-              path={this.state.category + "/ProductDescriptionPage"}
-              element={
-                <ProductDescriptionPage handleCategory={this.handleCategory} />
-              }
-            />
-            <Route
               key={"cart"}
               path={"cart"}
               element={
@@ -282,7 +272,6 @@ export default class App extends Component {
                   setCartItemNumber={this.setCartItemNumber}
                   currencysymbol={this.state.currencysymbol}
                   currency={this.state.currencylabel}
-                  count={this.state.count}
                   onClick={this.increment}
                   hideMiniCart={this.hideMiniCart}
                 />

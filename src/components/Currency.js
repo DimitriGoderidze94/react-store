@@ -10,7 +10,6 @@ export default class Currency extends Component {
         symbol={this.props.currencySymbol}
         id="selectCurrency"
       >
-        {/* <span id="currencySymbol">{this.props.currencySymbol + " "}</span> */}
         <select
           value={this.props.currencySymbol + " " + this.props.currency}
           className="currencyChanger"

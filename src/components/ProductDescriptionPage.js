@@ -49,7 +49,7 @@ export default class ProductDescriptionPage extends Component {
       sessionStorage.setItem("cart", JSON.stringify(cart));
     }
 
-    this.props.hideMiniCart();
+    // this.props.hideMiniCart();
     this.props.setCartItemNumber();
     this.props.setTotalPrice();
   }
@@ -87,8 +87,14 @@ export default class ProductDescriptionPage extends Component {
           <div className="attributesContainer">
             <h2>{this.props.specs.name}</h2>
             {this.props.specs.attributes.map((attribute, key) => (
-              <div className="attributes" key={attribute.name}>
-                <h5 key={attribute.name}>{attribute.name}</h5>
+              <div
+                style={{
+                  height: 72 / this.props.specs.attributes.length + "%",
+                }}
+                className="attributes"
+                key={attribute.name}
+              >
+                <h5 key={attribute.name}>{attribute.name + ":"}</h5>
                 {attribute.items.map((item, key1) => (
                   <button
                     onClick={() => {
@@ -124,18 +130,22 @@ export default class ProductDescriptionPage extends Component {
                 ))}
               </div>
             ))}
+            <div className="bottom">
+              <h4>PRICE:</h4>
+              <span>{this.props.currencysymbol + this.props.price}</span>
+              <br />
+              <button className="addToCart" onClick={() => this.setCartData()}>
+                ADD TO CART
+              </button>
 
-            <h4>PRICE:</h4>
-            <span>{this.props.currencysymbol + this.props.price}</span>
-            <br />
-            <button className="addToCart" onClick={() => this.setCartData()}>
-              ADD TO CART
-            </button>
+              <div
+                className="description"
+                dangerouslySetInnerHTML={{
+                  __html: this.props.specs.description,
+                }}
+              ></div>
+            </div>
           </div>
-          <div
-            className="description"
-            dangerouslySetInnerHTML={{ __html: this.props.specs.description }}
-          ></div>
         </div>
       </div>
     );

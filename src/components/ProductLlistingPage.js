@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import ProductCard from "./ProductCard";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import ProductDescriptionPage from "./ProductDescriptionPage";
 
 export default class ProductLlistingPage extends Component {
@@ -9,7 +9,6 @@ export default class ProductLlistingPage extends Component {
     super(props);
 
     this.state = {
-      productSpecs: [],
       fullSpecs: [],
     };
   }
@@ -72,7 +71,7 @@ export default class ProductLlistingPage extends Component {
         key={this.props.category}
       >
         <section id="wrapper">
-          {this.state.fullSpecs.map((specs, key) => (
+          {this.state.fullSpecs.map((specs) => (
             <Routes key={specs.id}>
               <Route
                 key={"ProductListingPage"}

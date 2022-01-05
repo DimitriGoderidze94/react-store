@@ -1,26 +1,30 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  font-style: normal;
+  font-weight: bold;
+  text-align: center;
 }
 
 * {
   margin: 0;
-  font-family: "Raleway", sans-serif;
   color: #1d1f22;
-
   text-decoration: none;
-  font-style: normal;
-  font-weight: bold;
 }
 
 h2,
 h3 {
   text-align: left;
   margin-left: 5%;
+}
+
+h4 {
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 code {
@@ -30,65 +34,64 @@ code {
 
 h6 {
   font-weight: 300;
-  font-size: 18px;
+  font-size: 2.9vh;
   margin-left: 4.5%;
 }
 
 .listProductPrice {
   font-weight: 800;
-  font-size: 18px;
+  font-size: 2.9vh;
   margin-left: 4.5%;
 }
 
 .ProductDescriptionPage {
-  width: 100%;
+  width: 90%;
 
   display: inline-block;
-  aspect-ratio: 3 / 2;
+  height: 75vh;
 }
 
 h5 {
-  margin: 0.3%;
+  margin: 0.1%;
+  font-weight: bold;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .minImgContainer {
-  width: 15%;
-  height: 95%;
-
+  width: 10%;
+  height: 85%;
   float: left;
-  margin: 2%;
   flex-wrap: wrap;
 }
 
 .minImg {
   max-height: 30%;
-  aspect-ratio: 1/1;
+  margin-right: 30%;
   max-width: 95%;
+  border: 1px solid #c4c4c4;
+  aspect-ratio: 2/3;
 }
 
 .ProductDescriptionContainer {
-  width: 30%;
-  height: 95%;
-
+  width: 50%;
+  height: 85%;
   float: left;
-  margin: 2%;
+  margin-left: 1%;
   text-align: left;
+  position: relative;
 }
 
 .maxImgContainer {
-  width: 30%;
-  height: 95%;
-
+  width: 32%;
+  height: 85%;
   float: left;
   margin-top: 0px;
-  margin: 2%;
 }
 
 .listCard {
   width: 28%;
   margin: 1%;
   min-width: 290px;
-
   display: inline-block;
   aspect-ratio: 2 / 3;
   position: relative;
@@ -104,28 +107,26 @@ h5 {
 .listImg {
   height: 70%;
   width: 90%;
-
   margin: 4.5% 0 0 4.5%;
   filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
 }
 
-.description * {
-  height: 30%;
-  max-height: 40%;
-
-  overflow: auto;
-  text-align: left;
-  font-family: "Roboto", sans-serif;
-}
 .attributesContainer {
   margin-top: 0;
-  height: 70%;
+  height: 60%;
+  font-size: 1.6vh;
+}
+.bottom {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  height: 44%;
 }
 
 .attributes {
-  /* border: 1px solid blue; */
   padding: 0;
-  height: 25%;
+  height: 20%;
+  font-size: 2vh;
 }
 
 ul {
@@ -147,7 +148,6 @@ ul {
 }
 
 .menu {
-  /* border: 1px solid black; */
   margin: 2%;
   margin-left: 5%;
   vertical-align: middle;
@@ -156,24 +156,28 @@ ul {
 
 .square,
 .square1 {
-  width: 15.5%;
-  font-size: 1.6vw;
+  font-family: "Source Sans Pro", sans-serif;
+  width: 8%;
+  font-size: 4vh;
   aspect-ratio: 1 / 1;
-  margin: 1%;
+  margin: 0%;
+  margin-right: 1%;
   overflow: hidden;
   padding: 0;
   border: 2px solid gray;
+  font-weight: 700;
 }
+
 .square1 {
   width: 44%;
   aspect-ratio: 1/1;
   border: 1px solid #1d1f22;
+  font-size: 8vh;
 }
 
 .menuItem {
   height: 7vh;
   display: inline-block;
-  /* border: 1px solid red; */
   margin: 0.5%;
   vertical-align: middle;
 }
@@ -195,70 +199,68 @@ ul {
   height: 63vh;
   width: 94%;
   margin-left: 2%;
-  /* border: 1px solid black; */
+  text-align: left;
 }
 
 .halfView {
   position: relative;
+  display: flex;
+  align-items: center;
   width: 45%;
-  /* border: 1px solid black; */
   margin: 1%;
   float: left;
-  height: 95%;
+  aspect-ratio: 3/1;
   flex-wrap: wrap;
-  justify-content: center;
+}
+.halfView .fullWidth {
+  width: 98%;
 }
 
 .cartImg {
   width: 98%;
-  /* border: 1px solid black; */
   height: 85%;
 }
 
 .quantity {
-  padding-right: 18%;
-  font-size: 150%;
+  padding-right: 3vw;
+  font-size: 2vw;
 }
 
 .half {
-  position: relative;
-  padding-top: 10%;
   text-align: end;
-  height: 68%;
-  width: 43%;
-  margin-left: 3%;
-  margin-top: 3%;
-  float: left;
-  /* border: 1px solid black; */
-  flex-wrap: wrap;
+  width: 42%;
+  aspect-ratio: 1/1;
 }
 
 .line {
   height: 1px;
   will-change: 100%;
-  background: #a08f8f;
+  background: #e5e5e5;
 }
 
 .removeFromCart {
   text-align: center;
+  width: 100%;
+}
+
+.removeFromCart button {
+  font-size: 2.1vh;
+}
+#minicart .removeFromCart button {
+  font-size: 1.5vh;
 }
 
 .attributes.forCart {
   height: 28%;
-}
-
-#cartPage {
-  text-align: left;
+  width: 100%;
 }
 
 #minicart {
-  font-size: 60%;
+  font-size: 1.7vh;
   position: absolute;
-
   z-index: 5;
-
   width: 20%;
-  height: 60vh;
+  height: 40vh;
   min-width: 150px;
   left: calc(80% - 100px);
   background-color: white;
@@ -272,9 +274,9 @@ ul {
 #checkOut {
   border: 1px solid #1d1f22;
   display: inline-block;
-  width: 40%;
+  width: 42%;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 1.7vh;
   line-height: 120%;
   margin-right: 2%;
 }
@@ -285,7 +287,7 @@ ul {
   color: white;
 }
 .minicartTop {
-  height: 45vh;
+  height: 27vh;
   background-color: white;
 
   overflow-y: scroll;
@@ -295,20 +297,29 @@ ul {
   height: 22vh;
 }
 #minicart .square {
-  font-size: 1.6%;
+  width: 25%;
+  font-size: 1.3vh;
 }
+
+.forCart .square {
+  width: 18%;
+}
+
 #minicart .square1 {
-  width: 50%;
+  width: 80%;
+  text-align: center;
+  padding: 0;
+
+  font-size: 2.8vh;
 }
 
 #minicart .quantity {
-  padding-right: 5%;
+  padding-right: 25%;
 }
 
 .listingPageCart {
   width: 30%;
   aspect-ratio: 1/1;
-
   top: 64%;
   left: 65%;
   background: url("./img/greenCart.png");
@@ -336,7 +347,7 @@ ul {
   background-position: center;
   image-rendering: pixelated;
 }
-#showCart div {
+#showCart #cartItemNumber {
   font-size: 15px;
   position: relative;
   top: 0px;
@@ -364,23 +375,44 @@ ul {
   image-rendering: pixelated;
 }
 
+.description {
+  height: 42%;
+  font-size: 3.3vh;
+  overflow: auto;
+  text-align: left;
+  font-family: "Roboto", sans-serif;
+}
+
 .addToCart {
-  width: 70%;
+  margin: 1% 0 1% 0;
+  padding: 2%;
+  width: 90%;
   background-color: #5ece7b;
   color: #ffffff;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 2.2vh;
   border: none;
 }
 
 #totalPriceContainer {
-  margin-top: 3vh;
+  margin-top: 1vh;
   text-align: left;
   padding: 0 10% 0 10%;
-  margin-bottom: 5%;
+  margin-bottom: 2%;
 }
 #total {
   margin-left: 5%;
   margin-right: 45%;
   margin-bottom: 5%;
+}
+
+@media only screen and (max-width: 500px) {
+  .square,
+  .square1 {
+    width: 18%;
+    font-size: 1.6vh;
+  }
+  .quantity {
+    padding-right: 0vw;
+  }
 }

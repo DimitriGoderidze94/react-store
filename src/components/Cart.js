@@ -5,8 +5,6 @@ export default class Cart extends Component {
     super(props);
     this.state = {
       cart: JSON.parse(sessionStorage.getItem("cart")) || "[]",
-      sumPriceList: [],
-      totalPrice: 0,
     };
   }
 
@@ -52,41 +50,42 @@ export default class Cart extends Component {
               this.props.currencysymbol +
               this.props.totalPrice}
           </h3>
-          {/* <h3 className={JSON.parse(sessionStorage.getItem("cart"))[0][1]}></h3> */}
           {JSON.parse(sessionStorage.getItem("cart")).map((cartItem, key2) => (
             <div key={cartItem[1].name} className="cartItemContainer">
               <div className="halfView">
-                <h4>{cartItem[1].name}</h4>
-                <b>{"UNIT PRICE: " + this.props.currencysymbol}</b>
-                <b>
-                  {
-                    cartItem[1].prices.filter(
-                      (price) => price.currency.label === this.props.currency
-                    )[0].amount
-                  }
-                </b>
+                <div className="fullWidth">
+                  <h4>{cartItem[1].name}</h4>
+                  <b>{this.props.currencysymbol}</b>
+                  <b>
+                    {
+                      cartItem[1].prices.filter(
+                        (price) => price.currency.label === this.props.currency
+                      )[0].amount
+                    }
+                  </b>
 
-                {cartItem[1].attributes.map((attribute, key) => (
-                  <div className="attributes forCart" key={attribute.name}>
-                    <h5 key={attribute.name}>{attribute.name}</h5>
-                    {attribute.items.map((item, key1) => (
-                      <button
-                        key={item.displayValue}
-                        className="square"
-                        style={{
-                          backgroundColor: item.displayValue,
-                          color: item.displayValue,
-                          borderColor:
-                            cartItem[2][key] === item.id
-                              ? "#1D1F22"
-                              : "lightblue",
-                        }}
-                      >
-                        {item.displayValue}
-                      </button>
-                    ))}
-                  </div>
-                ))}
+                  {cartItem[1].attributes.map((attribute, key) => (
+                    <div className="attributes forCart" key={attribute.name}>
+                      <h5 key={attribute.name}>{attribute.name + ":"}</h5>
+                      {attribute.items.map((item) => (
+                        <button
+                          key={item.displayValue}
+                          className="square"
+                          style={{
+                            backgroundColor: item.displayValue,
+                            color: item.displayValue,
+                            borderColor:
+                              cartItem[2][key] === item.id
+                                ? "#1D1F22"
+                                : "lightblue",
+                          }}
+                        >
+                          {item.displayValue}
+                        </button>
+                      ))}
+                    </div>
+                  ))}
+                </div>
               </div>
               <div className="halfView" key={cartItem[1].name}>
                 <div className="half">
@@ -135,7 +134,7 @@ export default class Cart extends Component {
                   />
                 </div>
 
-                <div className="removeFromCart">
+                <div className="removeFromCart half">
                   <b>
                     <b>{" SUM: " + this.props.currencysymbol}</b>
                     {Math.round(
@@ -154,9 +153,6 @@ export default class Cart extends Component {
               <div className="line"></div>
             </div>
           ))}
-
-          {/* <button onClick={() => this.getCartData()}>getCartData</button>
-          <button onClick={() => this.clearCartData()}>clear</button> */}
           <div className="line"></div>
         </div>
       );

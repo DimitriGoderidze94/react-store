@@ -91,7 +91,7 @@ export default class ProductCard extends Component {
         >
           <h6 className={this.props.listProductTitle}>{this.props.title}</h6>
           <span className={this.props.listProductPrice}>
-            {this.props.currencysymbol + this.props.price}
+            {this.props.currencysymbol + this.props.price.toFixed(2)}
           </span>
         </Link>
         <br />

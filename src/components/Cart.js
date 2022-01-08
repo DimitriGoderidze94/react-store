@@ -25,7 +25,7 @@ export default class Cart extends Component {
     if (JSON.parse(sessionStorage.getItem("cart")).length === 0) {
       return (
         <div onMouseDown={this.props.hideMiniCart} id="cartPage">
-          <h2 style={{ textAlign: "center" }}>cart is empty</h2>
+          <h2 style={{ textAlign: "center" }}>THE CART IS EMPTY</h2>
         </div>
       );
     } else {
@@ -45,13 +45,16 @@ export default class Cart extends Component {
 
                   <b>
                     <b>{this.props.currencysymbol}</b>
-                    {Math.round(
-                      cartItem[1].prices.filter(
-                        (price) => price.currency.label === this.props.currency
-                      )[0].amount *
-                        cartItem[0].quantity *
-                        100
-                    ) / 100}
+                    {(
+                      Math.round(
+                        cartItem[1].prices.filter(
+                          (price) =>
+                            price.currency.label === this.props.currency
+                        )[0].amount *
+                          cartItem[0].quantity *
+                          100
+                      ) / 100
+                    ).toFixed(2)}
                   </b>
 
                   {cartItem[1].attributes.map((attribute, key) => (
@@ -112,7 +115,7 @@ export default class Cart extends Component {
 
                       sessionStorage.setItem("cart", JSON.stringify(temp));
                       this.props.setTotalPrice();
-                      if (temp[key2][0].quantity == 1) {
+                      if (temp[key2][0].quantity === 1) {
                         this.removeCartItem(key2);
                       }
                     }}

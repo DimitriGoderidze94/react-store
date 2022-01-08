@@ -133,7 +133,9 @@ export default class ProductDescriptionPage extends Component {
             ))}
             <div className="bottom">
               <h4>PRICE:</h4>
-              <span>{this.props.currencysymbol + this.props.price}</span>
+              <span>
+                {this.props.currencysymbol + this.props.price.toFixed(2)}
+              </span>
               <br />
               <button className="addToCart" onClick={() => this.setCartData()}>
                 ADD TO CART

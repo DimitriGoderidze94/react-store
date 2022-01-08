@@ -228,7 +228,7 @@ export default class App extends Component {
               <div id="totalPriceContainer">
                 <b id="total">TOTAL: </b>
                 <b id="totalPrice">
-                  {this.state.currencysymbol + this.state.totalPrice}
+                  {this.state.currencysymbol + this.state.totalPrice.toFixed(2)}
                 </b>
               </div>
               <div id="fullWidth">

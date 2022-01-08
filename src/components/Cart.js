@@ -170,6 +170,7 @@ export default class Cart extends Component {
               <div className="line"></div>
             </div>
           ))}
+          <br />
           <div className="line"></div>
         </div>
       );

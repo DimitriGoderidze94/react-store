@@ -47,7 +47,7 @@ export default class ProductCard extends Component {
         )}
         <Link
           style={{
-            opacity: this.props.specs.inStock ? 0.9 : 0.6,
+            opacity: this.props.specs.inStock ? 0.95 : 0.7,
             pointerEvents: this.props.specs.inStock ? "auto" : "none",
           }}
           to={this.props.id}
@@ -55,13 +55,10 @@ export default class ProductCard extends Component {
           <div
             className="listImgContainer"
             style={{
-              opacity: this.props.specs.inStock ? 0.9 : 0.7,
+              opacity: this.props.specs.inStock ? 0.95 : 0.6,
             }}
           >
             <img
-              style={{
-                opacity: this.props.specs.inStock ? 0.9 : 0.7,
-              }}
               className={this.props.listImg}
               src={this.props.img}
               alt={this.props.alt}
@@ -72,7 +69,7 @@ export default class ProductCard extends Component {
           this.props.attributeLength && (
           <button
             style={{
-              opacity: this.props.specs.inStock ? 0.9 : 0.7,
+              opacity: this.props.specs.inStock ? 0.95 : 0.7,
               pointerEvents: this.props.specs.inStock ? "auto" : "none",
             }}
             onClick={() => {
@@ -87,7 +84,7 @@ export default class ProductCard extends Component {
         )}
         <Link
           style={{
-            opacity: this.props.specs.inStock ? 0.9 : 0.4,
+            opacity: this.props.specs.inStock ? 0.95 : 0.4,
             pointerEvents: this.props.specs.inStock ? "auto" : "none",
           }}
           to={this.props.id}

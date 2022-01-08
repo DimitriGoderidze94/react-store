@@ -51,7 +51,6 @@ export default class ProductDescriptionPage extends Component {
       sessionStorage.setItem("cart", JSON.stringify(cart));
     }
 
-    // this.props.hideMiniCart();
     this.props.setCartItemNumber();
     this.props.setTotalPrice();
   }

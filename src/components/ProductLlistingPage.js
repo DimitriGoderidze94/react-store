@@ -60,7 +60,6 @@ export default class ProductLlistingPage extends Component {
         this.setState({
           fullSpecs: result.data.category.products,
         });
-        console.log(result.data.category.products);
       });
   }
 

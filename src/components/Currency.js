@@ -19,12 +19,10 @@ export default class Currency extends Component {
             id="vector"
             style={{
               transform: this.props.showCurrency
-                ? "rotate(-90deg)"
-                : "rotate(90deg)",
+                ? "rotate(0deg)"
+                : "rotate(180deg)",
             }}
-          >
-            &gt;
-          </span>
+          ></span>
         </button>
         {this.props.showCurrency && (
           <div className="column">

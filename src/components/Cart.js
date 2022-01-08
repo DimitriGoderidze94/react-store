@@ -7,20 +7,6 @@ export default class Cart extends Component {
       cart: JSON.parse(sessionStorage.getItem("cart")) || "[]",
       choosenImg: [],
     };
-    console.log(JSON.parse(sessionStorage.getItem("cart")));
-  }
-
-  getCartData() {
-    const cart = JSON.parse(sessionStorage.getItem("cart") || "[]");
-
-    console.log(cart);
-  }
-
-  clearCartData() {
-    this.setState({
-      cart: [],
-    });
-    sessionStorage.setItem("cart", "[]");
   }
 
   removeCartItem(key) {
@@ -40,18 +26,17 @@ export default class Cart extends Component {
       return (
         <div onMouseDown={this.props.hideMiniCart} id="cartPage">
           <h2 style={{ textAlign: "center" }}>cart is empty</h2>
-          {/* <h3 style={{ textAlign: "center" }}>TOTAL PRICE: 0</h3> */}
         </div>
       );
     } else {
       return (
         <div id="cartPage" onMouseDown={this.props.hideMiniCart}>
-          <h2>Cart</h2>
-          <h3>
+          <h2>CART</h2>
+          {/* <h3>
             {"TOTAL PRICE: " +
               this.props.currencysymbol +
               this.props.totalPrice}
-          </h3>
+          </h3> */}
           {JSON.parse(sessionStorage.getItem("cart")).map((cartItem, key2) => (
             <div key={cartItem[1].name} className="cartItemContainer">
               <div className="halfView">
@@ -135,7 +120,7 @@ export default class Cart extends Component {
                     -
                   </button>
                 </div>
-                <div className="half">
+                <div className="half cartImgContainer">
                   <button
                     onClick={() => {
                       let temp =
@@ -176,7 +161,6 @@ export default class Cart extends Component {
                     alt={"img"}
                   />
                 </div>
-
                 {/* <div className="removeFromCart half">
                   <button onClick={() => this.removeCartItem(key2)}>
                     remove

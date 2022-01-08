@@ -7,7 +7,6 @@ import ProductLlistingPage from "./components/ProductLlistingPage";
 import React, { Component } from "react";
 import Currency from "./components/Currency";
 import Cart from "./components/Cart";
-import ProductDescriptionPage from "./components/ProductDescriptionPage";
 
 export default class App extends Component {
   constructor(props) {
@@ -25,12 +24,14 @@ export default class App extends Component {
         ? JSON.parse(sessionStorage.getItem("cart")).length
         : "",
       totalPrice: JSON.parse(sessionStorage.getItem("totalPrice")) || 0,
+      showCurrency: false,
     };
     this.handleCurrency = this.handleCurrency.bind(this);
     this.handleCategory = this.handleCategory.bind(this);
     this.hideMiniCart = this.hideMiniCart.bind(this);
     this.setCartItemNumber = this.setCartItemNumber.bind(this);
     this.setTotalPrice = this.setTotalPrice.bind(this);
+    this.showCurrencyList = this.showCurrencyList.bind(this);
   }
 
   componentDidMount() {
@@ -86,9 +87,8 @@ export default class App extends Component {
   handleCurrency(e) {
     this.setState(
       {
-        currencylabel:
-          e.target.selectedOptions[0].getAttribute("currencylabel"),
-        currencysymbol: e.target.selectedOptions[0].getAttribute("symbol"),
+        currencylabel: e.target.getAttribute("currencylabel"),
+        currencysymbol: e.target.getAttribute("symbol"),
       },
       () => {
         this.setTotalPrice();
@@ -96,11 +96,11 @@ export default class App extends Component {
     );
     sessionStorage.setItem(
       "choosenCurrencySymbol",
-      JSON.stringify(e.target.selectedOptions[0].getAttribute("symbol"))
+      JSON.stringify(e.target.getAttribute("symbol"))
     );
     sessionStorage.setItem(
       "choosenCurrencyLabel",
-      JSON.stringify(e.target.selectedOptions[0].getAttribute("currencylabel"))
+      JSON.stringify(e.target.getAttribute("currencylabel"))
     );
   }
 
@@ -128,6 +128,24 @@ export default class App extends Component {
       showCart: false,
     });
     document.getElementById("page").style.background = "#FFFFFF";
+  }
+
+  showCurrencyList() {
+    if (this.state.showCurrency) {
+      this.setState({
+        showCurrency: false,
+      });
+    } else {
+      this.setState({
+        showCurrency: true,
+      });
+    }
+  }
+
+  hideCurrencyList() {
+    this.setState({
+      showCurrency: false,
+    });
   }
 
   setCartItemNumber() {
@@ -159,12 +177,15 @@ export default class App extends Component {
           <Nav
             currencylabel={this.state.currencylabel}
             hideMiniCart={this.hideMiniCart}
+            hideCurrencyList={this.hideCurrencyList}
             AllCategories={this.state.AllCategories}
             category={this.state.category}
             handleCategory={this.handleCategory}
           />
           <div id="logo" className="menuItem"></div>
           <Currency
+            showCurrencyList={this.showCurrencyList}
+            showCurrency={this.state.showCurrency}
             setTotalPrice={this.setTotalPrice}
             hideMiniCart={this.hideMiniCart}
             currencyList={this.state.currencyList}
@@ -176,7 +197,10 @@ export default class App extends Component {
           <button
             className="menuItem"
             id="showCart"
-            onClick={() => this.handleCart()}
+            onClick={() => {
+              this.handleCart();
+              this.hideCurrencyList();
+            }}
           >
             <div id="cartItemNumber">{this.state.cartItemNumber}</div>
           </button>
@@ -222,7 +246,13 @@ export default class App extends Component {
             </div>
           </div>
         )}
-        <div onMouseDown={() => this.hideMiniCart()} id="page">
+        <div
+          onMouseDown={() => {
+            this.hideMiniCart();
+            this.hideCurrencyList();
+          }}
+          id="page"
+        >
           <Routes>
             {this.state.AllCategories.map((category) => (
               <Route
@@ -230,7 +260,6 @@ export default class App extends Component {
                 path={category + "/*"}
                 element={
                   <div>
-                    <h2>{category.toUpperCase()}</h2>
                     <ProductLlistingPage
                       setTotalPrice={this.setTotalPrice}
                       setCartItemNumber={this.setCartItemNumber}

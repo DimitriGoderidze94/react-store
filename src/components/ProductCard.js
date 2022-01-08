@@ -19,6 +19,7 @@ export default class ProductCard extends Component {
         { quantity: 1 },
         this.props.specs,
         JSON.parse(sessionStorage.getItem(this.props.id) || "[]"),
+        0,
       ]);
       sessionStorage.setItem("cart", JSON.stringify(temp));
     } else {
@@ -26,16 +27,31 @@ export default class ProductCard extends Component {
         { quantity: 1 },
         this.props.specs,
         JSON.parse(sessionStorage.getItem(this.props.id) || "[]"),
+        0,
       ]);
       sessionStorage.setItem("cart", JSON.stringify(cart));
     }
     this.props.setCartItemNumber();
     this.props.setTotalPrice();
   }
+
+  removeCategoryName() {
+    document.getElementById("category");
+  }
+
   render() {
     return (
       <div className={this.props.listCard}>
-        <Link to={this.props.id}>
+        {!this.props.specs.inStock && (
+          <div className="outOfStock">OUT OF STOCK</div>
+        )}
+        <Link
+          style={{
+            opacity: this.props.specs.inStock ? 1 : 0.4,
+            pointerEvents: this.props.specs.inStock ? "auto" : "none",
+          }}
+          to={this.props.id}
+        >
           <img
             className={this.props.listImg}
             src={this.props.img}
@@ -45,11 +61,27 @@ export default class ProductCard extends Component {
         {JSON.parse(sessionStorage.getItem(this.props.id) || "[]").length ===
           this.props.attributeLength && (
           <button
-            onClick={() => this.setCartData()}
+            style={{
+              opacity: this.props.specs.inStock ? 1 : 0.4,
+              pointerEvents: this.props.specs.inStock ? "auto" : "none",
+            }}
+            onClick={() => {
+              if (this.props.specs.inStock) {
+                this.setCartData();
+              } else {
+                alert("OUT OF STOCK");
+              }
+            }}
             className="listingPageCart"
           ></button>
         )}
-        <Link to={this.props.id}>
+        <Link
+          style={{
+            opacity: this.props.specs.inStock ? 1 : 0.4,
+            pointerEvents: this.props.specs.inStock ? "auto" : "none",
+          }}
+          to={this.props.id}
+        >
           <h6 className={this.props.listProductTitle}>{this.props.title}</h6>
           <span className={this.props.listProductPrice}>
             {this.props.currencysymbol + this.props.price}

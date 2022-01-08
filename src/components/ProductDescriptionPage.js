@@ -38,6 +38,7 @@ export default class ProductDescriptionPage extends Component {
         { quantity: 1 },
         this.props.specs,
         this.state.chosenAttributes,
+        0,
       ]);
       sessionStorage.setItem("cart", JSON.stringify(temp));
     } else {
@@ -45,6 +46,7 @@ export default class ProductDescriptionPage extends Component {
         { quantity: 1 },
         this.props.specs,
         this.state.chosenAttributes,
+        0,
       ]);
       sessionStorage.setItem("cart", JSON.stringify(cart));
     }
@@ -121,7 +123,7 @@ export default class ProductDescriptionPage extends Component {
                           sessionStorage.getItem(this.props.id) || "[]"
                         )[key] === item.id
                           ? "#1D1F22"
-                          : "lightblue",
+                          : "#C0C0C0",
                     }}
                     key={item.displayValue}
                   >

@@ -60,6 +60,7 @@ export default class ProductLlistingPage extends Component {
         this.setState({
           fullSpecs: result.data.category.products,
         });
+        console.log(result.data.category.products);
       });
   }
 
@@ -70,6 +71,13 @@ export default class ProductLlistingPage extends Component {
         currency={this.props.currency}
         key={this.props.category}
       >
+        <Routes>
+          <Route
+            path="/"
+            element={<h2 id="category">{this.props.category.toUpperCase()}</h2>}
+          />
+        </Routes>
+
         <section id="wrapper">
           {this.state.fullSpecs.map((specs) => (
             <Routes key={specs.id}>

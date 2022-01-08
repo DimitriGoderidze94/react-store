@@ -10,25 +10,40 @@ export default class Currency extends Component {
         symbol={this.props.currencySymbol}
         id="selectCurrency"
       >
-        <select
-          value={this.props.currencySymbol + " " + this.props.currency}
+        <button
           className="currencyChanger"
-          onChange={(e) => {
-            this.props.handleCurrency(e);
-          }}
+          onClick={() => this.props.showCurrencyList()}
         >
-          {this.props.currencyList.map((currency) => (
-            <option
-              id={currency.label}
-              className="currencyButtons"
-              symbol={currency.symbol}
-              key={currency.label}
-              currencylabel={currency.label}
-            >
-              {currency.symbol} {currency.label}
-            </option>
-          ))}
-        </select>
+          <span>{this.props.currencySymbol}</span>
+          <span
+            id="vector"
+            style={{
+              transform: this.props.showCurrency
+                ? "rotate(-90deg)"
+                : "rotate(90deg)",
+            }}
+          >
+            &gt;
+          </span>
+        </button>
+        {this.props.showCurrency && (
+          <div className="column">
+            {this.props.currencyList.map((currency) => (
+              <button
+                onClick={(e) => {
+                  this.props.handleCurrency(e);
+                }}
+                id={currency.label}
+                className="currencyButtons"
+                symbol={currency.symbol}
+                key={currency.label}
+                currencylabel={currency.label}
+              >
+                {currency.symbol} {currency.label}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     );
   }

@@ -5,7 +5,9 @@ export default class Cart extends Component {
     super(props);
     this.state = {
       cart: JSON.parse(sessionStorage.getItem("cart")) || "[]",
+      choosenImg: [],
     };
+    console.log(JSON.parse(sessionStorage.getItem("cart")));
   }
 
   getCartData() {
@@ -37,8 +39,8 @@ export default class Cart extends Component {
     if (JSON.parse(sessionStorage.getItem("cart")).length === 0) {
       return (
         <div onMouseDown={this.props.hideMiniCart} id="cartPage">
-          <h2>cart is empty</h2>
-          <h3>TOTAL PRICE: 0</h3>
+          <h2 style={{ textAlign: "center" }}>cart is empty</h2>
+          {/* <h3 style={{ textAlign: "center" }}>TOTAL PRICE: 0</h3> */}
         </div>
       );
     } else {
@@ -55,13 +57,16 @@ export default class Cart extends Component {
               <div className="halfView">
                 <div className="fullWidth">
                   <h4>{cartItem[1].name}</h4>
-                  <b>{this.props.currencysymbol}</b>
+
                   <b>
-                    {
+                    <b>{this.props.currencysymbol}</b>
+                    {Math.round(
                       cartItem[1].prices.filter(
                         (price) => price.currency.label === this.props.currency
-                      )[0].amount
-                    }
+                      )[0].amount *
+                        cartItem[0].quantity *
+                        100
+                    ) / 100}
                   </b>
 
                   {cartItem[1].attributes.map((attribute, key) => (
@@ -77,7 +82,7 @@ export default class Cart extends Component {
                             borderColor:
                               cartItem[2][key] === item.id
                                 ? "#1D1F22"
-                                : "lightblue",
+                                : "#C0C0C0",
                           }}
                         >
                           {item.displayValue}
@@ -110,7 +115,7 @@ export default class Cart extends Component {
                   </button>
                   <div className="quantity">{cartItem[0].quantity}</div>
                   <button
-                    className="square1"
+                    className="square1 bottom1"
                     onClick={() => {
                       let temp = JSON.parse(sessionStorage.getItem("cart"));
                       if (temp[key2][0].quantity > 1) {
@@ -119,36 +124,64 @@ export default class Cart extends Component {
                       this.setState({
                         cart: temp,
                       });
+
                       sessionStorage.setItem("cart", JSON.stringify(temp));
                       this.props.setTotalPrice();
+                      if (temp[key2][0].quantity == 1) {
+                        this.removeCartItem(key2);
+                      }
                     }}
                   >
                     -
                   </button>
                 </div>
                 <div className="half">
+                  <button
+                    onClick={() => {
+                      let temp =
+                        JSON.parse(sessionStorage.getItem("cart")) || "[]";
+
+                      if (this.state.cart[key2][3] > 0) {
+                        temp[key2][3] -= 1;
+                        this.setState({
+                          cart: temp,
+                        });
+                        sessionStorage.setItem("cart", JSON.stringify(temp));
+                      }
+                    }}
+                    className="chevron left"
+                  ></button>
+                  <button
+                    onClick={() => {
+                      let temp =
+                        JSON.parse(sessionStorage.getItem("cart")) || "[]";
+
+                      if (
+                        this.state.cart[key2][3] <
+                        cartItem[1].gallery.length - 1
+                      ) {
+                        temp[key2][3] += 1;
+                        this.setState({
+                          cart: temp,
+                        });
+                        sessionStorage.setItem("cart", JSON.stringify(temp));
+                      }
+                    }}
+                    className="chevron right"
+                  ></button>
+
                   <img
                     className="cartImg"
-                    src={cartItem[1].gallery[0]}
+                    src={cartItem[1].gallery[this.state.cart[key2][3]]}
                     alt={"img"}
                   />
                 </div>
 
-                <div className="removeFromCart half">
-                  <b>
-                    <b>{" SUM: " + this.props.currencysymbol}</b>
-                    {Math.round(
-                      cartItem[1].prices.filter(
-                        (price) => price.currency.label === this.props.currency
-                      )[0].amount *
-                        cartItem[0].quantity *
-                        100
-                    ) / 100}
-                  </b>
+                {/* <div className="removeFromCart half">
                   <button onClick={() => this.removeCartItem(key2)}>
                     remove
                   </button>
-                </div>
+                </div> */}
               </div>
               <div className="line"></div>
             </div>

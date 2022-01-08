@@ -23,6 +23,10 @@ h3 {
   margin-left: 5%;
 }
 
+#category {
+  margin: 5% 0 5% 5%;
+}
+
 h4 {
   font-family: "Roboto Condensed", sans-serif;
 }
@@ -36,6 +40,7 @@ h6 {
   font-weight: 300;
   font-size: 2.9vh;
   margin-left: 4.5%;
+  margin-top: 15%;
 }
 
 .listProductPrice {
@@ -44,9 +49,12 @@ h6 {
   margin-left: 4.5%;
 }
 
+#page {
+  min-height: 60vh;
+}
+
 .ProductDescriptionPage {
   width: 90%;
-
   display: inline-block;
   height: 75vh;
 }
@@ -97,6 +105,16 @@ h5 {
   position: relative;
   text-align: left;
   box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+}
+
+.outOfStock {
+  position: absolute;
+  z-index: 10;
+  top: 30%;
+  text-align: center;
+  width: 100%;
+  color: #8d8f9a;
+  font-weight: 400;
 }
 
 .productDescriptionImg {
@@ -158,7 +176,7 @@ ul {
 .square1 {
   font-family: "Source Sans Pro", sans-serif;
   width: 8%;
-  font-size: 2.8vh;
+  font-size: 2.2vh;
   aspect-ratio: 1 / 1;
   margin: 0%;
   margin-right: 1%;
@@ -169,10 +187,16 @@ ul {
 }
 
 .square1 {
-  width: 44%;
+  position: absolute;
+  width: 40px;
   aspect-ratio: 1/1;
   border: 1px solid #1d1f22;
-  font-size: 8vh;
+  font-size: 4vh;
+  left: calc(100% - 50px);
+}
+
+.square1.bottom1 {
+  bottom: 2%;
 }
 
 .menuItem {
@@ -188,21 +212,57 @@ ul {
 #selectCurrency {
   margin-left: 30%;
   height: 5%;
+  background-color: #ffffff;
 }
 
 .currencyChanger {
   width: 40px;
+  background-color: #ffffff;
+  text-align: left;
   border: none;
-  word-spacing: 8px;
+  font-family: "Raleway";
 }
+
+#vector {
+  display: inline-block;
+  transform: rotate(90deg);
+  font-weight: 700;
+  margin-left: 4px;
+  font-size: 10px;
+}
+
+.column {
+  text-align: left;
+  padding-left: 0.5%;
+  margin-top: 1%;
+  position: absolute;
+  width: 75px;
+  z-index: 99;
+  filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
+  background: #ffffff;
+}
+
+.currencyButtons {
+  text-align: left;
+  background-color: #ffffff;
+  border: none;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 160%;
+}
+
 .cartItemContainer {
-  height: 63vh;
+  height: 250px;
   width: 94%;
   margin-left: 2%;
   text-align: left;
+  position: relative;
 }
 
 .halfView {
+  height: 95%;
   position: relative;
   display: flex;
   align-items: center;
@@ -214,22 +274,66 @@ ul {
 }
 .halfView .fullWidth {
   width: 98%;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .cartImg {
   width: 98%;
-  height: 85%;
+  height: 100%;
+}
+
+.chevron {
+  position: absolute;
+  top: 45%;
+}
+.right {
+  right: 0;
+  background: url("./img/chevronRight.svg");
+}
+
+.left {
+  left: 0;
+  background: url("./img/chevronLeft.svg");
+}
+
+.left,
+.right {
+  width: 20px;
+  height: 20px;
+  border: none;
+  white-space: nowrap;
+  overflow: hidden;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: 60% 60%;
+  background-position: center;
+}
+
+#minicart .left,
+#minicart .right {
+  width: 13px;
+  height: 13px;
 }
 
 .quantity {
-  padding-right: 3vw;
-  font-size: 2vw;
+  position: absolute;
+  /* padding-right: 3vw; */
+
+  font-size: 20px;
+  left: calc(100% - 40px);
+  top: 40%;
 }
 
 .half {
-  text-align: end;
   width: 42%;
   aspect-ratio: 1/1;
+  height: 80%;
+  top: 0%;
+  position: relative;
 }
 
 .line {
@@ -258,7 +362,7 @@ ul {
 #minicart {
   font-size: 1.7vh;
   position: absolute;
-  z-index: 5;
+  z-index: 15;
   width: 20%;
   height: 40vh;
   min-width: 150px;
@@ -294,27 +398,29 @@ ul {
 }
 
 #minicart .cartItemContainer {
-  height: 22vh;
+  height: 160px;
 }
 #minicart .square {
-  width: 25%;
-  font-size: 1.3vh;
+  width: 24px;
+  font-size: 8px;
 }
 
 .forCart .square {
-  width: 18%;
+  width: 40px;
+  font-size: 15px;
 }
 
 #minicart .square1 {
-  width: 80%;
+  width: 24px;
   text-align: center;
   padding: 0;
-
-  font-size: 2.8vh;
+  left: calc(100% - 27px);
+  font-size: 20px;
 }
 
 #minicart .quantity {
-  padding-right: 25%;
+  left: calc(100% - 25px);
+  font-size: 16px;
 }
 
 .listingPageCart {
@@ -347,6 +453,7 @@ ul {
   background-position: center;
   image-rendering: pixelated;
 }
+
 #showCart #cartItemNumber {
   font-size: 15px;
   position: relative;
@@ -407,12 +514,4 @@ ul {
 }
 
 @media only screen and (max-width: 500px) {
-  .square,
-  .square1 {
-    width: 18%;
-    font-size: 1.6vh;
-  }
-  .quantity {
-    padding-right: 0vw;
-  }
 }

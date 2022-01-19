@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import ProductCard from "./ProductCard";
 import { Routes, Route } from "react-router-dom";
 import ProductDescriptionPage from "./ProductDescriptionPage";

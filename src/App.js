@@ -1,8 +1,9 @@
-import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-
 import Nav from "./components/Nav";
 import { Routes, Route, Link } from "react-router-dom";
 import ProductLlistingPage from "./components/ProductLlistingPage";
+import { currencies } from "./data";
+import { categories } from "./data";
+import { fullInfo } from "./data";
 
 import React, { Component } from "react";
 import Currency from "./components/Currency";
@@ -25,7 +26,9 @@ export default class App extends Component {
         : "",
       totalPrice: JSON.parse(sessionStorage.getItem("totalPrice")) || 0,
       showCurrency: false,
+      fullSpecs: [],
     };
+
     this.handleCurrency = this.handleCurrency.bind(this);
     this.handleCategory = this.handleCategory.bind(this);
     this.hideMiniCart = this.hideMiniCart.bind(this);
@@ -38,49 +41,16 @@ export default class App extends Component {
     const cart = JSON.parse(sessionStorage.getItem("cart") || "[]");
     sessionStorage.setItem("cart", JSON.stringify(cart));
 
-    //categori list
-    const categoryInfo = new ApolloClient({
-      cache: new InMemoryCache(),
-      uri: "http://localhost:4000/",
+    const nav = categories.map((category) => category.name);
+    this.setState({ AllCategories: nav });
+    this.setState({
+      currencyList: currencies,
     });
 
-    categoryInfo
-      .query({
-        query: gql`
-          {
-            categories {
-              name
-            }
-          }
-        `,
-      })
-      .then((result) => {
-        const nav = result.data.categories.map((category) => category.name);
-        this.setState({ AllCategories: nav });
-      });
-
-    const currencyInfo = new ApolloClient({
-      cache: new InMemoryCache(),
-      uri: "http://localhost:4000/",
+    this.setState({
+      fullSpecs: fullInfo,
     });
 
-    // currency list
-    currencyInfo
-      .query({
-        query: gql`
-          {
-            currencies {
-              label
-              symbol
-            }
-          }
-        `,
-      })
-      .then((result) => {
-        this.setState({
-          currencyList: result.data.currencies,
-        });
-      });
     this.setCartItemNumber();
   }
 
@@ -105,7 +75,17 @@ export default class App extends Component {
   }
 
   handleCategory(e) {
-    this.setState({ category: e.target.innerText });
+    this.setState({ category: e.target.innerText.toLowerCase() });
+    if (e.target.innerText.toLowerCase() === "all") {
+      this.setState({
+        fullSpecs: fullInfo,
+      });
+    } else
+      this.setState({
+        fullSpecs: fullInfo.filter(
+          (info) => info.category === e.target.innerText.toLowerCase()
+        ),
+      });
   }
 
   handleCart() {
@@ -261,6 +241,7 @@ export default class App extends Component {
                 element={
                   <div>
                     <ProductLlistingPage
+                      fullSpecs={this.state.fullSpecs}
                       setTotalPrice={this.setTotalPrice}
                       setCartItemNumber={this.setCartItemNumber}
                       hideMiniCart={this.hideMiniCart}
@@ -279,6 +260,7 @@ export default class App extends Component {
               path={"/*"}
               element={
                 <ProductLlistingPage
+                  fullSpecs={this.state.fullSpecs}
                   setTotalPrice={this.setTotalPrice}
                   setCartItemNumber={this.setCartItemNumber}
                   hideMiniCart={this.hideMiniCart}

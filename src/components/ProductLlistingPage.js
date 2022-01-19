@@ -12,56 +12,7 @@ export default class ProductLlistingPage extends Component {
       fullSpecs: [],
     };
   }
-  componentDidMount() {
-    const product = new ApolloClient({
-      cache: new InMemoryCache(),
-      uri: "http://localhost:4000/",
-    });
-
-    product
-      .query({
-        query: gql`
-          query category($category: String!) {
-            category(input: { title: $category }) {
-              products {
-                id
-                name
-                inStock
-                gallery
-                description
-                category
-                attributes {
-                  id
-                  name
-                  type
-                  items {
-                    displayValue
-                    value
-                    id
-                  }
-                }
-                prices {
-                  currency {
-                    label
-                    symbol
-                  }
-                  amount
-                }
-                brand
-              }
-            }
-          }
-        `,
-        variables: {
-          category: this.props.category,
-        },
-      })
-      .then((result) => {
-        this.setState({
-          fullSpecs: result.data.category.products,
-        });
-      });
-  }
+  componentDidMount() {}
 
   render() {
     return (
@@ -78,7 +29,7 @@ export default class ProductLlistingPage extends Component {
         </Routes>
 
         <section id="wrapper">
-          {this.state.fullSpecs.map((specs) => (
+          {this.props.fullSpecs.map((specs) => (
             <Routes key={specs.id}>
               <Route
                 key={"ProductListingPage"}

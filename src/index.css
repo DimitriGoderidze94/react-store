@@ -559,4 +559,13 @@ ul {
     width: 14px;
     font-size: 6px;
   }
+  .column {
+    width: 58px;
+  }
+  #selectCurrency {
+    margin-left: 8%;
+  }
+  .menu * {
+    font-size: 14px;
+  }
 }

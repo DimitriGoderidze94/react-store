@@ -96,7 +96,7 @@ export default class ProductDescriptionPage extends Component {
                 key={attribute.name}
               >
                 <h5 key={attribute.name}>{attribute.name + ":"}</h5>
-                {attribute.items.map((item, key1) => (
+                {attribute.items.map((item) => (
                   <button
                     onClick={() => {
                       let temp = JSON.parse(
@@ -111,6 +111,7 @@ export default class ProductDescriptionPage extends Component {
                         this.props.id,
                         JSON.stringify(temp)
                       );
+                      console.log(this.props.specs);
                     }}
                     id={item.id}
                     className="square"
@@ -126,7 +127,7 @@ export default class ProductDescriptionPage extends Component {
                     }}
                     key={item.displayValue}
                   >
-                    {item.displayValue}
+                    {item.value}
                   </button>
                 ))}
               </div>

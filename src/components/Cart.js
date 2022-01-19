@@ -73,7 +73,7 @@ export default class Cart extends Component {
                                 : "#C0C0C0",
                           }}
                         >
-                          {item.displayValue}
+                          {item.value}
                         </button>
                       ))}
                     </div>

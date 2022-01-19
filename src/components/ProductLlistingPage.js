@@ -31,6 +31,7 @@ export default class ProductLlistingPage extends Component {
                 description
                 category
                 attributes {
+                  __typename @skip(if: true)
                   id
                   name
                   type

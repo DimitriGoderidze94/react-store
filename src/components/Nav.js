@@ -12,14 +12,9 @@ export default class Nav extends Component {
             className="navButtons"
             key={key}
             style={{
-              color:
-                this.props.category === category.toUpperCase()
-                  ? "#5ECE7B"
-                  : "black",
+              color: this.props.category === category ? "#5ECE7B" : "black",
               borderColor:
-                this.props.category === category.toUpperCase()
-                  ? "#5ECE7B"
-                  : "white",
+                this.props.category === category ? "#5ECE7B" : "white",
             }}
           >
             {category.toUpperCase()}

@@ -115,8 +115,8 @@ export default class ProductDescriptionPage extends Component {
                     id={item.id}
                     className="square"
                     style={{
-                      backgroundColor: item.displayValue,
-                      color: item.displayValue,
+                      backgroundColor: item.value,
+                      color: item.value,
                       borderColor:
                         JSON.parse(
                           sessionStorage.getItem(this.props.id) || "[]"
@@ -124,9 +124,9 @@ export default class ProductDescriptionPage extends Component {
                           ? "#1D1F22"
                           : "#C0C0C0",
                     }}
-                    key={item.displayValue}
+                    key={item.value}
                   >
-                    {item.displayValue}
+                    {item.value}
                   </button>
                 ))}
               </div>

@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/my-app/static/css/main.d42f6656.css",
-    "main.js": "/my-app/static/js/main.674e367c.js",
-    "static/js/787.f35fc8d3.chunk.js": "/my-app/static/js/787.f35fc8d3.chunk.js",
-    "index.html": "/my-app/index.html",
-    "static/media/chevronLeft.svg": "/my-app/static/media/chevronLeft.86890a1acecd168394d7.svg",
-    "static/media/chevronRight.svg": "/my-app/static/media/chevronRight.441ce4d13a4f17fa1209.svg",
-    "main.d42f6656.css.map": "/my-app/static/css/main.d42f6656.css.map",
-    "main.674e367c.js.map": "/my-app/static/js/main.674e367c.js.map",
-    "787.f35fc8d3.chunk.js.map": "/my-app/static/js/787.f35fc8d3.chunk.js.map"
+    "main.css": "/react-store/static/css/main.49cd0aa3.css",
+    "main.js": "/react-store/static/js/main.10b8fa9c.js",
+    "static/js/787.f35fc8d3.chunk.js": "/react-store/static/js/787.f35fc8d3.chunk.js",
+    "index.html": "/react-store/index.html",
+    "static/media/chevronLeft.svg": "/react-store/static/media/chevronLeft.86890a1acecd168394d7.svg",
+    "static/media/chevronRight.svg": "/react-store/static/media/chevronRight.441ce4d13a4f17fa1209.svg",
+    "main.49cd0aa3.css.map": "/react-store/static/css/main.49cd0aa3.css.map",
+    "main.10b8fa9c.js.map": "/react-store/static/js/main.10b8fa9c.js.map",
+    "787.f35fc8d3.chunk.js.map": "/react-store/static/js/787.f35fc8d3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d42f6656.css",
-    "static/js/main.674e367c.js"
+    "static/css/main.49cd0aa3.css",
+    "static/js/main.10b8fa9c.js"
   ]
 }

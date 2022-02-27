@@ -52,7 +52,7 @@ export default class ProductCard extends Component {
       JSON.stringify(this.props.specs.attributes.map(item => item.items[0].id))
     );
 
-    console.log(this.props.id)
+
 
 
 

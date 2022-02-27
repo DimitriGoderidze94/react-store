@@ -57,11 +57,7 @@ export default class ProductDescriptionPage extends Component {
 
   }
 
-  componentDidMount() {
-    console.log(sessionStorage.getItem(this.props.id))
-    console.log("hi")
-    console.log(CSS.supports('color', 'red'))
-  }
+
 
   render() {
     return (
@@ -112,7 +108,7 @@ export default class ProductDescriptionPage extends Component {
                       this.setState({
                         chosenAttributes: temp,
                       });
-                      console.log(temp)
+
                       sessionStorage.setItem(
                         this.props.id,
                         JSON.stringify(this.props.specs.attributes.map(item => item.items[0].id))
@@ -120,13 +116,13 @@ export default class ProductDescriptionPage extends Component {
 
                     }}
                     id={item.id}
-                    className={CSS.supports('color', item.displayValue) ? "square supportedColor" : "square noSupportedColor"}
+                    className={CSS.supports('color', item.displayValue) ? "box supportedColor" : "box noSupportedColor"}
                     style={
                       CSS.supports('color', item.displayValue) ?
                         {
                           color: item.displayValue,
                           backgroundColor: item.displayValue,
-                          border: this.state.chosenAttributes[key] === item.id ? "4px solid rgb(0, 0, 0)" : "2px solid gray"
+                          border: this.state.chosenAttributes[key] === item.id ? "8px double rgb(200, 200, 200)" : "1px solid black"
                         } : {
                           color: this.state.chosenAttributes[key] === item.id ? "#ffffff" : "#1D1F22",
                           backgroundColor: this.state.chosenAttributes[key] === item.id ? "#1D1F22" : "#ffffff",
@@ -144,10 +140,10 @@ export default class ProductDescriptionPage extends Component {
                 {this.props.currencysymbol + this.props.price.toFixed(2)}
               </span>
               <br />
-              <button className="addToCart" onClick={() => this.setCartData()}>
+              <button className="addToCart" disabled={!this.props.specs.inStock} onClick={() => this.setCartData()}>
                 ADD TO CART
               </button>
-
+              {!this.props.specs.inStock && (<div className="outOfStockRed">Out Of Stock</div>)}
               <div
                 className="description"
                 dangerouslySetInnerHTML={{

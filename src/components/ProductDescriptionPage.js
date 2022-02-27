@@ -6,12 +6,13 @@ export default class ProductDescriptionPage extends Component {
 
     this.state = {
       choosenImg: 0,
-
       chosenAttributes: JSON.parse(
         sessionStorage.getItem(this.props.id) || "[]"
       ),
     };
   }
+
+
   setCartData() {
     let index = -1;
     const cart = JSON.parse(sessionStorage.getItem("cart") || "[]");
@@ -24,7 +25,7 @@ export default class ProductDescriptionPage extends Component {
 
     if (
       this.props.specs.attributes.length >
-      JSON.parse(sessionStorage.getItem(this.props.id) || "[]").filter(
+      this.state.chosenAttributes.filter(
         function (e) {
           return e != null;
         }
@@ -53,6 +54,12 @@ export default class ProductDescriptionPage extends Component {
 
     this.props.setCartItemNumber();
     this.props.setTotalPrice();
+
+  }
+
+  componentDidMount() {
+    console.log(sessionStorage.getItem(this.props.id))
+    console.log("hi")
   }
 
   render() {
@@ -99,19 +106,17 @@ export default class ProductDescriptionPage extends Component {
                 {attribute.items.map((item) => (
                   <button
                     onClick={() => {
-                      let temp = JSON.parse(
-                        sessionStorage.getItem(this.props.id) || "[]"
-                      );
-                      temp[key] = item.id;
+                      let temp = this.state.chosenAttributes;
+                      temp[key] = item.displayValue;
                       this.setState({
                         chosenAttributes: temp,
                       });
 
                       sessionStorage.setItem(
                         this.props.id,
-                        JSON.stringify(temp)
+                        JSON.stringify(this.props.specs.attributes.map(item => item.items[0].id))
                       );
-                      console.log(this.props.specs);
+
                     }}
                     id={item.id}
                     className="square"
@@ -119,9 +124,7 @@ export default class ProductDescriptionPage extends Component {
                       backgroundColor: item.displayValue,
                       color: item.displayValue,
                       borderColor:
-                        JSON.parse(
-                          sessionStorage.getItem(this.props.id) || "[]"
-                        )[key] === item.id
+                        this.state.chosenAttributes[key] === item.id
                           ? "#1D1F22"
                           : "#C0C0C0",
                     }}

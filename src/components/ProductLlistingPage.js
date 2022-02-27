@@ -12,6 +12,10 @@ export default class ProductLlistingPage extends Component {
       fullSpecs: [],
     };
   }
+
+
+
+
   componentDidMount() {
     const product = new ApolloClient({
       cache: new InMemoryCache(),
@@ -86,6 +90,7 @@ export default class ProductLlistingPage extends Component {
                 path={"/"}
                 element={
                   <ProductCard
+
                     setTotalPrice={this.props.setTotalPrice}
                     setCartItemNumber={this.props.setCartItemNumber}
                     attributeLength={specs.attributes.length}
@@ -118,6 +123,7 @@ export default class ProductLlistingPage extends Component {
                 path={specs.id}
                 element={
                   <ProductDescriptionPage
+
                     setTotalPrice={this.props.setTotalPrice}
                     setCartItemNumber={this.props.setCartItemNumber}
                     id={specs.id}

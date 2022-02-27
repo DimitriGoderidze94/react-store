@@ -60,6 +60,7 @@ export default class ProductDescriptionPage extends Component {
   componentDidMount() {
     console.log(sessionStorage.getItem(this.props.id))
     console.log("hi")
+    console.log(CSS.supports('color', 'red'))
   }
 
   render() {
@@ -111,7 +112,7 @@ export default class ProductDescriptionPage extends Component {
                       this.setState({
                         chosenAttributes: temp,
                       });
-
+                      console.log(temp)
                       sessionStorage.setItem(
                         this.props.id,
                         JSON.stringify(this.props.specs.attributes.map(item => item.items[0].id))
@@ -119,15 +120,17 @@ export default class ProductDescriptionPage extends Component {
 
                     }}
                     id={item.id}
-                    className="square"
-                    style={{
-                      backgroundColor: item.displayValue,
-                      color: item.displayValue,
-                      borderColor:
-                        this.state.chosenAttributes[key] === item.id
-                          ? "#1D1F22"
-                          : "#C0C0C0",
-                    }}
+                    className={CSS.supports('color', item.displayValue) ? "square supportedColor" : "square noSupportedColor"}
+                    style={
+                      CSS.supports('color', item.displayValue) ?
+                        {
+                          color: item.displayValue,
+                          backgroundColor: item.displayValue,
+                          border: this.state.chosenAttributes[key] === item.id ? "4px solid rgb(0, 0, 0)" : "2px solid gray"
+                        } : {
+                          color: this.state.chosenAttributes[key] === item.id ? "#ffffff" : "#1D1F22",
+                          backgroundColor: this.state.chosenAttributes[key] === item.id ? "#1D1F22" : "#ffffff",
+                        }}
                     key={item.displayValue}
                   >
                     {item.value}
@@ -154,7 +157,7 @@ export default class ProductDescriptionPage extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }

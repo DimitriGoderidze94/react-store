@@ -108,7 +108,10 @@ h5 {
   aspect-ratio: 2 / 3;
   position: relative;
   text-align: left;
-  box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+}
+
+.listCard:hover {
+  box-shadow: 0px 5px 15px rgba(35, 38, 41, 0.19);
 }
 
 .outOfStock {
@@ -145,6 +148,7 @@ h5 {
   height: 60%;
   font-size: 1.6vh;
 }
+
 .bottom {
   position: absolute;
   bottom: 0px;
@@ -220,6 +224,7 @@ ul {
 #nav {
   width: 44%;
 }
+
 #selectCurrency {
   margin-left: 30%;
   height: 5%;
@@ -297,6 +302,7 @@ ul {
   aspect-ratio: 3/1;
   flex-wrap: wrap;
 }
+
 .halfView .fullWidth {
   width: 98%;
   margin: 0;
@@ -322,6 +328,7 @@ ul {
   z-index: 4;
   opacity: 1;
 }
+
 .right {
   right: 0;
   background: url("./img/chevronRight.svg");
@@ -382,6 +389,7 @@ ul {
 .removeFromCart button {
   font-size: 2.1vh;
 }
+
 #minicart .removeFromCart button {
   font-size: 1.5vh;
 }
@@ -403,6 +411,7 @@ ul {
   background-color: white;
   box-shadow: 0px 0px 2px gray;
 }
+
 #fullWidth {
   width: 100%;
 }
@@ -423,6 +432,7 @@ ul {
   border: 1px solid #5ece7b;
   color: white;
 }
+
 .minicartTop {
   height: 47vh;
   background-color: white;
@@ -433,6 +443,7 @@ ul {
 #minicart .cartItemContainer {
   height: 260px;
 }
+
 #minicart .square {
   width: 38px;
   font-size: 9px;
@@ -540,6 +551,7 @@ ul {
   padding: 0 10% 0 10%;
   margin-bottom: 2%;
 }
+
 #total {
   margin-left: 5%;
   margin-right: 45%;
@@ -551,14 +563,17 @@ ul {
     width: 35px;
     font-size: 9px;
   }
+
   .forCart .square {
     width: 30px;
     font-size: 10px;
   }
+
   #minicart .square {
     width: 26px;
     font-size: 6px;
   }
+
   .listcard {
     margin: 0;
   }

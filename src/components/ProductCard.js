@@ -6,7 +6,6 @@ export default class ProductCard extends Component {
     super(props);
     this.state = {
       hover: false,
-      choosenImg: 0,
       chosenAttributes: JSON.parse(
         sessionStorage.getItem(this.props.id) || "[]"
       ),

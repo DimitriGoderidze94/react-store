@@ -225,11 +225,11 @@ ul {
 
 .box1 {
   position: absolute;
-  width: 4vw;
-  height: 3.5vw;
+  width: 3vw;
+  height: 2.5vw;
   border: 1px solid #1d1f22;
   font-size: 16px;
-  left: calc(100% - 5vw);
+  left: calc(100% - 4vw);
 }
 
 .box1.bottom1 {
@@ -404,12 +404,11 @@ ul {
   position: absolute;
   /* padding-right: 3vw; */
 
-  font-size: 20px;
-  left: calc(100% - 40px);
   top: 40%;
-  width: 4vw;
+  width: 3vw;
   left: calc(100% - 4vw);
-  font-size: 2vw;
+  font-size: 1.5vw;
+  text-align: center;
 }
 
 
@@ -502,18 +501,18 @@ ul {
 
 
 #minicart .box1 {
-  width: 3vw;
-  height: 2.8vw;
+  width: 2vw;
+  height: 2vw;
   text-align: center;
   padding: 0;
-  left: calc(100% - 4.5vw);
-  font-size: 2vw;
+  left: calc(100% - 2.5vw);
+  font-size: 1.5vw;
 }
 
 #minicart .quantity {
-  width: 3vw;
-  left: calc(100% - 4.5vw);
-  font-size: 1.5vw;
+  width: 2vw;
+  left: calc(100% - 2.5vw);
+  font-size: 1.1vw;
   text-align: center;
 }
 

@@ -122,7 +122,7 @@ export default class ProductDescriptionPage extends Component {
                         {
                           color: item.displayValue,
                           backgroundColor: item.displayValue,
-                          border: this.state.chosenAttributes[key] === item.id ? "8px double rgb(200, 200, 200)" : "1px solid black"
+                          border: this.state.chosenAttributes[key] === item.id ? "8px solid rgb(200, 200, 200)" : "1px solid black"
                         } : {
                           color: this.state.chosenAttributes[key] === item.id ? "#ffffff" : "#1D1F22",
                           backgroundColor: this.state.chosenAttributes[key] === item.id ? "#1D1F22" : "#ffffff",

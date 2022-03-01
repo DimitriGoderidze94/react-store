@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+
 export default class Cart extends Component {
   constructor(props) {
     super(props);
@@ -32,11 +33,6 @@ export default class Cart extends Component {
       return (
         <div id="cartPage" onMouseDown={this.props.hideMiniCart}>
           <h2>CART</h2>
-          {/* <h3>
-            {"TOTAL PRICE: " +
-              this.props.currencysymbol +
-              this.props.totalPrice}
-          </h3> */}
           {JSON.parse(sessionStorage.getItem("cart")).map((cartItem, key2) => (
             <div key={cartItem[1].name} className="cartItemContainer">
               <div className="halfView cartOptions">
@@ -70,7 +66,7 @@ export default class Cart extends Component {
                               {
                                 color: item.displayValue,
                                 backgroundColor: item.displayValue,
-                                border: cartItem[2][key] === item.id ? "4px solid rgb(0, 0, 0)" : "1px solid #1D1F22"
+                                border: cartItem[2][key] === item.id ? "6px solid rgb(200, 200, 200)" : "1px solid black"
                               } : {
                                 color: cartItem[2][key] === item.id ? "#ffffff" : "#1D1F22",
                                 backgroundColor: cartItem[2][key] === item.id ? "#1D1F22" : "#ffffff",

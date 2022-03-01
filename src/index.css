@@ -42,15 +42,16 @@ span {
 
 h6 {
   font-weight: 300;
-  font-size: 2.9vh;
+  font-size: 18px;
   margin-left: 4.5%;
   margin-top: 15%;
 }
 
 .listProductPrice {
-  font-weight: 800;
-  font-size: 2.9vh;
+  font-weight: 500;
+  font-size: 18px;
   margin-left: 4.5%;
+  opacity: 1;
 }
 
 #page {
@@ -181,7 +182,7 @@ h5 {
 }
 
 .attributes .supportedColor:hover {
-  border: 8px double rgb(200, 200, 200) !important;
+  border: 8px solid rgb(200, 200, 200) !important;
 }
 
 ul {
@@ -212,8 +213,7 @@ ul {
 .box1 {
   font-family: "Source Sans Pro", sans-serif;
   width: 8vw;
-  height: 7vw;
-  min-width: 40px;
+  height: 6vw;
   font-size: 3.2vh;
   margin: 0%;
   margin-right: 1%;
@@ -225,10 +225,11 @@ ul {
 
 .box1 {
   position: absolute;
-  width: 5vw;
+  width: 4vw;
+  height: 3.5vw;
   border: 1px solid #1d1f22;
   font-size: 16px;
-  left: calc(100% - 6vw);
+  left: calc(100% - 5vw);
 }
 
 .box1.bottom1 {
@@ -261,16 +262,16 @@ ul {
   font-size: 18px;
   font-family: "Raleway";
   font-weight: 600;
+  display: inline-block;
 }
 
 #vector {
-  height: 10px;
-  width: 10px;
-  background: url("./img/VectorUp.png");
+  height: 3vh;
+  width: 3vh;
+  background: url("./img/VectorUp.svg");
   display: inline-block;
   font-weight: 700;
-  margin-left: 4px;
-  font-size: 10px;
+  margin-left: 0;
   border: none;
   white-space: nowrap;
   overflow: hidden;
@@ -279,7 +280,7 @@ ul {
   background-size: 60% 60%;
   background-position: center;
   image-rendering: optimizeQuality;
-  bottom: 4px;
+  bottom: 0px;
 }
 
 .column {
@@ -302,6 +303,11 @@ ul {
   font-weight: 500;
   font-size: 16px;
   line-height: 160%;
+  width: 100%;
+}
+
+.currencyButtons:hover {
+  background-color: rgb(220, 220, 220);
 }
 
 .cartItemContainer {
@@ -401,6 +407,9 @@ ul {
   font-size: 20px;
   left: calc(100% - 40px);
   top: 40%;
+  width: 4vw;
+  left: calc(100% - 4vw);
+  font-size: 2vw;
 }
 
 
@@ -440,12 +449,17 @@ ul {
   font-size: 1.7vh;
   position: absolute;
   z-index: 15;
-  width: 38%;
+  width: 30%;
   height: 60vh;
   min-width: 150px;
-  left: 55%;
+  left: 65%;
   background-color: white;
   box-shadow: 0px 0px 2px gray;
+}
+
+#minicart h5 {
+  font-size: 1.3vw;
+  margin-bottom: 5px;
 }
 
 #fullWidth {
@@ -459,7 +473,7 @@ ul {
   width: 42%;
   font-weight: 600;
   font-size: 1.7vh;
-  line-height: 3vh;
+  line-height: 4vh;
   margin-right: 2%;
 }
 
@@ -481,24 +495,26 @@ ul {
 }
 
 #minicart .box {
-  width: 10px;
+  width: 3vw;
   height: 2.5vw;
-  font-size: 9px;
+  font-size: 0.8vw;
 }
 
 
 #minicart .box1 {
-  width: 4vw;
-  height: 4vw;
+  width: 3vw;
+  height: 2.8vw;
   text-align: center;
   padding: 0;
   left: calc(100% - 4.5vw);
-  font-size: 20px;
+  font-size: 2vw;
 }
 
 #minicart .quantity {
-  left: calc(100% - 25px);
-  font-size: 16px;
+  width: 3vw;
+  left: calc(100% - 4.5vw);
+  font-size: 1.5vw;
+  text-align: center;
 }
 
 .listingPageCart {
@@ -547,8 +563,8 @@ ul {
 }
 
 #logo {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   background: url("./img/logo.png");
   border: none;
   white-space: nowrap;
@@ -591,24 +607,3 @@ ul {
   margin-right: 45%;
   margin-bottom: 5%;
 }
-
-/* @media only screen and (max-width: 520px) {
-  .box {
-    width: 35px;
-    font-size: 9px;
-  }
-
-  .forCart .box {
-    width: 30px;
-    font-size: 10px;
-  }
-
-  #minicart .box {
-    width: 26px;
-    font-size: 6px;
-  }
-
-  .listcard {
-    margin: 0;
-  }
-} */

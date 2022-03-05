@@ -1,17 +1,18 @@
 {
   "files": {
-    "main.css": "/react-store/static/css/main.49cd0aa3.css",
-    "main.js": "/react-store/static/js/main.f1e16a45.js",
+    "main.css": "/react-store/static/css/main.01e9e9dc.css",
+    "main.js": "/react-store/static/js/main.2bdf3f1f.js",
     "static/js/787.f35fc8d3.chunk.js": "/react-store/static/js/787.f35fc8d3.chunk.js",
     "index.html": "/react-store/index.html",
+    "static/media/VectorUp.svg": "/react-store/static/media/VectorUp.64822e2636e74c6d2dd3.svg",
     "static/media/chevronLeft.svg": "/react-store/static/media/chevronLeft.86890a1acecd168394d7.svg",
     "static/media/chevronRight.svg": "/react-store/static/media/chevronRight.441ce4d13a4f17fa1209.svg",
-    "main.49cd0aa3.css.map": "/react-store/static/css/main.49cd0aa3.css.map",
-    "main.f1e16a45.js.map": "/react-store/static/js/main.f1e16a45.js.map",
+    "main.01e9e9dc.css.map": "/react-store/static/css/main.01e9e9dc.css.map",
+    "main.2bdf3f1f.js.map": "/react-store/static/js/main.2bdf3f1f.js.map",
     "787.f35fc8d3.chunk.js.map": "/react-store/static/js/787.f35fc8d3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.49cd0aa3.css",
-    "static/js/main.f1e16a45.js"
+    "static/css/main.01e9e9dc.css",
+    "static/js/main.2bdf3f1f.js"
   ]
 }

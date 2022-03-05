@@ -6,12 +6,13 @@ export default class ProductDescriptionPage extends Component {
 
     this.state = {
       choosenImg: 0,
-
       chosenAttributes: JSON.parse(
         sessionStorage.getItem(this.props.id) || "[]"
       ),
     };
   }
+
+
   setCartData() {
     let index = -1;
     const cart = JSON.parse(sessionStorage.getItem("cart") || "[]");
@@ -24,7 +25,7 @@ export default class ProductDescriptionPage extends Component {
 
     if (
       this.props.specs.attributes.length >
-      JSON.parse(sessionStorage.getItem(this.props.id) || "[]").filter(
+      this.state.chosenAttributes.filter(
         function (e) {
           return e != null;
         }
@@ -53,7 +54,10 @@ export default class ProductDescriptionPage extends Component {
 
     this.props.setCartItemNumber();
     this.props.setTotalPrice();
+
   }
+
+
 
   render() {
     return (
@@ -96,35 +100,34 @@ export default class ProductDescriptionPage extends Component {
                 key={attribute.name}
               >
                 <h5 key={attribute.name}>{attribute.name + ":"}</h5>
-                {attribute.items.map((item, key1) => (
+                {attribute.items.map((item) => (
                   <button
                     onClick={() => {
-                      let temp = JSON.parse(
-                        sessionStorage.getItem(this.props.id) || "[]"
-                      );
-                      temp[key] = item.id;
+                      let temp = this.state.chosenAttributes;
+                      temp[key] = item.displayValue;
                       this.setState({
                         chosenAttributes: temp,
                       });
 
                       sessionStorage.setItem(
                         this.props.id,
-                        JSON.stringify(temp)
+                        JSON.stringify(this.props.specs.attributes.map(item => item.items[0].id))
                       );
+
                     }}
                     id={item.id}
-                    className="square"
-                    style={{
-                      backgroundColor: item.value,
-                      color: item.value,
-                      borderColor:
-                        JSON.parse(
-                          sessionStorage.getItem(this.props.id) || "[]"
-                        )[key] === item.id
-                          ? "#1D1F22"
-                          : "#C0C0C0",
-                    }}
-                    key={item.value}
+                    className={CSS.supports('color', item.displayValue) ? "box supportedColor" : "box noSupportedColor"}
+                    style={
+                      CSS.supports('color', item.displayValue) ?
+                        {
+                          color: item.displayValue,
+                          backgroundColor: item.displayValue,
+                          border: this.state.chosenAttributes[key] === item.id ? "8px solid rgb(200, 200, 200)" : "1px solid black"
+                        } : {
+                          color: this.state.chosenAttributes[key] === item.id ? "#ffffff" : "#1D1F22",
+                          backgroundColor: this.state.chosenAttributes[key] === item.id ? "#1D1F22" : "#ffffff",
+                        }}
+                    key={item.displayValue}
                   >
                     {item.value}
                   </button>
@@ -137,10 +140,10 @@ export default class ProductDescriptionPage extends Component {
                 {this.props.currencysymbol + this.props.price.toFixed(2)}
               </span>
               <br />
-              <button className="addToCart" onClick={() => this.setCartData()}>
+              <button className="addToCart" disabled={!this.props.specs.inStock} onClick={() => this.setCartData()}>
                 ADD TO CART
               </button>
-
+              {!this.props.specs.inStock && (<div className="outOfStockRed">Out Of Stock</div>)}
               <div
                 className="description"
                 dangerouslySetInnerHTML={{
@@ -150,7 +153,7 @@ export default class ProductDescriptionPage extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }

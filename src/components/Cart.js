@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 
+
 export default class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
       cart: JSON.parse(sessionStorage.getItem("cart")) || "[]",
-      choosenImg: [],
     };
   }
 
@@ -32,14 +32,9 @@ export default class Cart extends Component {
       return (
         <div id="cartPage" onMouseDown={this.props.hideMiniCart}>
           <h2>CART</h2>
-          {/* <h3>
-            {"TOTAL PRICE: " +
-              this.props.currencysymbol +
-              this.props.totalPrice}
-          </h3> */}
           {JSON.parse(sessionStorage.getItem("cart")).map((cartItem, key2) => (
             <div key={cartItem[1].name} className="cartItemContainer">
-              <div className="halfView">
+              <div className="halfView cartOptions">
                 <div className="fullWidth">
                   <h4>{cartItem[1].name}</h4>
 
@@ -51,8 +46,8 @@ export default class Cart extends Component {
                           (price) =>
                             price.currency.label === this.props.currency
                         )[0].amount *
-                          cartItem[0].quantity *
-                          100
+                        cartItem[0].quantity *
+                        100
                       ) / 100
                     ).toFixed(2)}
                   </b>
@@ -61,29 +56,33 @@ export default class Cart extends Component {
                     <div className="attributes forCart" key={attribute.name}>
                       <h5 key={attribute.name}>{attribute.name + ":"}</h5>
                       {attribute.items.map((item) => (
+
                         <button
                           key={item.displayValue}
-                          className="square"
-                          style={{
-                            backgroundColor: item.displayValue,
-                            color: item.displayValue,
-                            borderColor:
-                              cartItem[2][key] === item.id
-                                ? "#1D1F22"
-                                : "#C0C0C0",
-                          }}
+                          className="box"
+                          style={
+                            CSS.supports('color', item.displayValue) ?
+                              {
+                                color: item.displayValue,
+                                backgroundColor: item.displayValue,
+                                border: cartItem[2][key] === item.id ? "6px solid rgb(200, 200, 200)" : "1px solid black"
+                              } : {
+                                color: cartItem[2][key] === item.id ? "#ffffff" : "#1D1F22",
+                                backgroundColor: cartItem[2][key] === item.id ? "#1D1F22" : "#ffffff",
+                              }}
                         >
                           {item.value}
                         </button>
+
                       ))}
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="halfView" key={cartItem[1].name}>
-                <div className="half">
+              <div className="halfView cartNumber" key={cartItem[1].name}>
+                <div className="left30">
                   <button
-                    className="square1"
+                    className="box1"
                     onClick={() => {
                       let temp = JSON.parse(sessionStorage.getItem("cart"));
                       if (temp[key2][0].quantity < 50) {
@@ -103,7 +102,7 @@ export default class Cart extends Component {
                   </button>
                   <div className="quantity">{cartItem[0].quantity}</div>
                   <button
-                    className="square1 bottom1"
+                    className="box1 bottom1"
                     onClick={() => {
                       let temp = JSON.parse(sessionStorage.getItem("cart"));
                       if (temp[key2][0].quantity > 1) {
@@ -123,7 +122,7 @@ export default class Cart extends Component {
                     -
                   </button>
                 </div>
-                <div className="half cartImgContainer">
+                <div className="cartImgContainer">
                   <button
                     onClick={() => {
                       let temp =

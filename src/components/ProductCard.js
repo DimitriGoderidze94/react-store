@@ -2,6 +2,18 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 export default class ProductCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      hover: false,
+      chosenAttributes: JSON.parse(
+        sessionStorage.getItem(this.props.id) || "[]"
+      ),
+    };
+
+  }
+
+
   setCartData() {
     let index = -1;
     const cart = JSON.parse(sessionStorage.getItem("cart") || "[]");
@@ -12,13 +24,15 @@ export default class ProductCard extends Component {
       }
     }
 
+
+
     if (index > -1) {
       let temp = JSON.parse(sessionStorage.getItem("cart") || "[]");
 
       temp.splice(index, 1, [
         { quantity: 1 },
         this.props.specs,
-        JSON.parse(sessionStorage.getItem(this.props.id) || "[]"),
+        this.props.specs.attributes.map(item => item.items[0].displayValue),
         0,
       ]);
       sessionStorage.setItem("cart", JSON.stringify(temp));
@@ -26,13 +40,25 @@ export default class ProductCard extends Component {
       cart.push([
         { quantity: 1 },
         this.props.specs,
-        JSON.parse(sessionStorage.getItem(this.props.id) || "[]"),
+        this.props.specs.attributes.map(item => item.items[0].id),
         0,
       ]);
       sessionStorage.setItem("cart", JSON.stringify(cart));
     }
+
+    sessionStorage.setItem(
+      this.props.id,
+      JSON.stringify(this.props.specs.attributes.map(item => item.items[0].id))
+    );
+
+
+
+
+
+
     this.props.setCartItemNumber();
     this.props.setTotalPrice();
+
   }
 
   removeCategoryName() {
@@ -42,13 +68,25 @@ export default class ProductCard extends Component {
   render() {
     return (
       <div className={this.props.listCard}>
+
         {!this.props.specs.inStock && (
           <div className="outOfStock">OUT OF STOCK</div>
         )}
+
         <Link
+          onMouseOver={() => {
+            this.setState({
+              hover: true
+            })
+          }}
+          onMouseLeave={() => {
+            this.setState({
+              hover: false
+            })
+          }}
           style={{
             opacity: this.props.specs.inStock ? 0.95 : 0.7,
-            pointerEvents: this.props.specs.inStock ? "auto" : "none",
+
           }}
           to={this.props.id}
         >
@@ -64,35 +102,36 @@ export default class ProductCard extends Component {
               alt={this.props.alt}
             />
           </div>
-        </Link>
-        {JSON.parse(sessionStorage.getItem(this.props.id) || "[]").length ===
-          this.props.attributeLength && (
-          <button
+
+          {this.state.hover && (
+            <button
+              style={{
+                opacity: this.props.specs.inStock ? 0.95 : 0.7,
+
+              }}
+
+              onClick={() => {
+                if (this.props.specs.inStock) {
+
+                  this.setCartData();
+                } else {
+                  alert("OUT OF STOCK");
+                }
+              }}
+              className="listingPageCart"
+            ></button>
+          )}
+          <div
             style={{
-              opacity: this.props.specs.inStock ? 0.95 : 0.7,
-              pointerEvents: this.props.specs.inStock ? "auto" : "none",
+              opacity: this.props.specs.inStock ? 0.95 : 0.4,
             }}
-            onClick={() => {
-              if (this.props.specs.inStock) {
-                this.setCartData();
-              } else {
-                alert("OUT OF STOCK");
-              }
-            }}
-            className="listingPageCart"
-          ></button>
-        )}
-        <Link
-          style={{
-            opacity: this.props.specs.inStock ? 0.95 : 0.4,
-            pointerEvents: this.props.specs.inStock ? "auto" : "none",
-          }}
-          to={this.props.id}
-        >
-          <h6 className={this.props.listProductTitle}>{this.props.title}</h6>
-          <span className={this.props.listProductPrice}>
-            {this.props.currencysymbol + this.props.price.toFixed(2)}
-          </span>
+            to={this.props.id}
+          >
+            <h6 className={this.props.listProductTitle}>{this.props.title}</h6>
+            <span className={this.props.listProductPrice}>
+              {this.props.currencysymbol + this.props.price.toFixed(2)}
+            </span>
+          </div>
         </Link>
         <br />
       </div>

@@ -281,7 +281,7 @@ ul {
   background-size: 60% 60%;
   background-position: center;
   image-rendering: optimizeQuality;
-  bottom: 0px;
+  bottom: 0;
 }
 
 .column {
